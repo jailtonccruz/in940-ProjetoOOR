@@ -96,11 +96,14 @@ DROP TABLE Tb_FuncionarioTerceirizado;
 
 CREATE OR REPLACE TYPE Tp_FuncionarioTerceirizado UNDER Tp_Funcionario (
      contrato NUMBER
+     IdEmpresaTerc NUMBER
 );
 /
 
 CREATE TABLE Tb_FuncionarioTerceirizado of Tp_FuncionarioTerceirizado (
-     CONSTRAINT Pk_FuncionarioTerceirizado PRIMARY KEY (cpf)
+     CONSTRAINT Pk_FuncionarioTerceirizado PRIMARY KEY (cpf),
+     CONSTRAINT Fk_FunTerceirizado_Empresa (IdEmpresaTerc) 
+    FOREIGN KEY Tb_EmpresaTerceirizada (Id)
 );
 
 -- Pedido
@@ -146,7 +149,7 @@ CREATE OR REPLACE TYPE Tp_Produto AS OBJECT (
     nome VARCHAR2(255)
     valor NUMBER,
     estoque NUMBER,
-    limiarPedido NUMBER
+    PontoPedido NUMBER
 );
 /
 
@@ -170,6 +173,20 @@ CREATE OR REPLACE TYPE Tp_Sessao AS OBJECT (
 
 CREATE TABLE Tb_Sessao of Tp_Sessao (
      CONSTRAINT pk_sessao PRIMARY KEY(id)
+);
+
+CREATE SEQUENCE Sq_Movimento START WITH 0 MINVALUE 0;
+SELECT Sq_Movimento.NEXTVAL FROM DUAL;
+
+CREATE OR REPLACE TYPE Tp_Movimento AS OBJECT (
+    id NUMBER,
+    data  DATE,
+    quantidade NUMBER(9,2)
+);
+/
+
+CREATE TABLE Tb_Movimento of Tp_Movimento (
+     CONSTRAINT pk_Movimento PRIMARY KEY(id)
 );
 
 
