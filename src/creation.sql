@@ -12,6 +12,7 @@ CREATE TYPE Tp_EmpresaTerceirizada AS OBJECT(
     id NUMBER,
     nome VARCHAR2(255)
 );
+/
 CREATE TABLE Tb_EmpresaTerceirizada OF Tp_EmpresaTerceirizada
 ( CONSTRAINT Pk_EmpresaTerceirizada PRIMARY KEY (id)
 );
@@ -49,12 +50,12 @@ CREATE OR REPLACE TYPE Tp_Endereco
  Cidade     VARCHAR2(30),
  Uf         CHAR(02)
 );
-
+/
 CREATE OR REPLACE TYPE Ar_Fone 
        IS VARRAY(10)
        OF NUMBER (11);
 drop type Tp_pessoa force;
-
+/
 CREATE OR REPLACE TYPE Tp_Pessoa
   AS OBJECT
 (cpf        NUMBER(11),
@@ -62,14 +63,14 @@ CREATE OR REPLACE TYPE Tp_Pessoa
  foneNums   Ar_fone,
  endereco Tp_Endereco
 ) NOT FINAL;
-
+/
 /* ----------------------------------------------------
 Criando Tabela Subtipo Pessoa - Cliente
 ---------------------------------------------------- */  
 
 DROP TYPE Tp_Cliente FORCE;
 CREATE OR REPLACE TYPE Tp_Cliente UNDER Tp_Pessoa();
-
+/
   
 DROP TABLE Tb_Cliente;
 CREATE TABLE Tb_Cliente of Tp_Cliente 
@@ -79,16 +80,19 @@ CREATE TABLE Tb_Cliente of Tp_Cliente
 DROP TYPE Tp_Funcionario FORCE;
 CREATE OR REPLACE TYPE Tp_Funcionario UNDER Tp_Pessoa()
 NOT FINAL;
+/
 
 DROP TYPE Tp_FuncionarioEfetivo FORCE;
 CREATE OR REPLACE TYPE Tp_FuncionarioEfetivo UNDER Tp_Funcionario(
      salario NUMBER
 );
+/
 
 DROP TYPE Tp_FuncionarioTerceirizado FORCE;
 CREATE OR REPLACE TYPE Tp_FuncionarioTerceirizado UNDER Tp_Funcionario(
      contrato NUMBER
 );
+/
 
 DROP TABLE Tb_FuncionarioTerceirizado;
 CREATE TABLE Tb_FuncionarioTerceirizado of Tp_FuncionarioTerceirizado
@@ -106,6 +110,7 @@ CREATE TYPE Tp_Pedido AS OBJECT(
     id NUMBER,
     data DATE
 );
+/
 DROP TABLE Tb_pedido;
 CREATE TABLE Tb_pedido of Tp_pedido(
      CONSTRAINT pk_pedido PRIMARY KEY(id)
@@ -116,6 +121,7 @@ CREATE TYPE Tp_Promocao AS OBJECT(
     qtd_min NUMBER,
     desconto NUMBER(1, 2)
 );
+/
 
 DROP TABLE Tb_Promocao;
 CREATE TABLE Tb_Promocao of Tp_Promocao();
