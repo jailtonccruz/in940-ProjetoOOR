@@ -133,6 +133,27 @@ CREATE OR REPLACE TYPE Tp_Promocao AS OBJECT (
 
 CREATE TABLE Tb_Promocao of Tp_Promocao ();
 
+-- Produto
+DROP SEQUENCE Sq_Produto;
+DROP TYPE Tp_Produto FORCE;
+DROP TABLE Tb_Produto;
+
+CREATE SEQUENCE Sq_Produto START WITH 0 MINVALUE 0;
+SELECT Sq_Produto.NEXTVAL FROM DUAL;
+
+CREATE OR REPLACE TYPE Tp_Produto AS OBJECT (
+    id NUMBER,
+    nome VARCHAR2(255)
+    valor NUMBER,
+    estoque NUMBER,
+    limiarPedido NUMBER
+);
+/
+
+CREATE TABLE Tb_Produto of Tp_Produto (
+     CONSTRAINT pk_Produto PRIMARY KEY(id)
+);
+
 -- Sessão
 DROP SEQUENCE Sq_Sessao;
 DROP TYPE Tp_Sessao FORCE;
