@@ -25,7 +25,7 @@ CREATE SEQUENCE Sq_Departamento START WITH 0 MINVALUE 0;
 SELECT Sq_Departamento.NEXTVAL FROM DUAL;
 
 CREATE OR REPLACE TYPE Tp_Departamento AS OBJECT (
-     id        NUMBER(03),
+     id        NUMBER,
      nome       VARCHAR2(255),
      sigla      VARCHAR2(255)
 );
@@ -46,7 +46,7 @@ CREATE OR REPLACE TYPE Tp_Endereco AS OBJECT (
      Logradouro VARCHAR2(255),
      Bairro     VARCHAR2(255),
      Cidade     VARCHAR2(255),
-     Uf         CHAR(02)
+     Uf         CHAR(2)
 );
 /
 
@@ -55,7 +55,7 @@ CREATE OR REPLACE TYPE Ar_Fone IS VARRAY(10) OF NUMBER (11);
 
 CREATE OR REPLACE TYPE Tp_Pessoa AS OBJECT (
      cpf        NUMBER(11),
-     nome       VARCHAR2(30),
+     nome       VARCHAR2(255),
      foneNums   Ar_fone,
      endereco Tp_Endereco
 ) NOT FINAL;
