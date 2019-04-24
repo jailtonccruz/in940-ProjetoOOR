@@ -27,15 +27,11 @@ CREATE TABLE Tb_FuncionarioEfetivo of Tp_FuncionarioEfetivo
 DROP TABLE Tb_FuncionarioTerceirizado;
 
 
--- CREATE TABLE Tb_FuncionarioTerceirizado of Tp_FuncionarioTerceirizado
--- (
---     CONSTRAINT Pk_FuncionarioTerceirizado PRIMARY KEY
---     (
---     cpf
---     ),
---     CONSTRAINT Fk_FunTerceirizado_Empresa (IdEmpresaTerc)
---     FOREIGN KEY Tb_EmpresaTerceirizada (Id)
--- );
+CREATE TABLE Tb_FuncionarioTerceirizado of Tp_FuncionarioTerceirizado
+(CONSTRAINT Pk_FuncionarioTerceirizado PRIMARY KEY (cpf),
+CONSTRAINT Fk_FunTerceirizado_Empresa (IdEmpresaTerc)
+FOREIGN KEY Tb_EmpresaTerceirizada (Id)
+);
 
 DROP TABLE Tb_Pedido;
 
@@ -45,6 +41,7 @@ CREATE TABLE Tb_Pedido of Tp_Pedido
 );
 DROP TABLE Tb_Promocao;
 CREATE TABLE Tb_Promocao of Tp_Promocao;
+
 DROP TABLE Tb_Produto;
 CREATE TABLE Tb_Produto of Tp_Produto
 (
@@ -61,3 +58,6 @@ CREATE TABLE Tb_Movimento of Tp_Movimento
 );
 
 
+CREATE TABLE Tb_Rel_Contem of Tp_Rel_Contem
+
+CREATE TABLE Tb_Rel_Movimenta OF Tp_Rel_Movimenta
