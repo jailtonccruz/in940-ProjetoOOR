@@ -73,16 +73,17 @@ DROP TABLE Tb_Cliente;
 CREATE OR REPLACE TYPE Tp_Cliente UNDER Tp_Pessoa ();
 /
 
-CREATE TABLE Tb_Cliente of Tp_Cliente (
-     CONSTRAINT pk_Cliente PRIMARY KEY (cpf)
-);
+    CREATE TABLE Tb_Cliente of Tp_Cliente (
+         CONSTRAINT pk_Cliente PRIMARY KEY (cpf)--,
+    --    constraint fk_cliente_pessoa foreign key (cpf) references tp_pessoa(cpf)
+    );
 
 ---- Funcionário Efetivo
 DROP TYPE Tp_FuncionarioEfetivo FORCE;
 DROP TABLE Tb_FuncionarioEfetivo;
 
 CREATE OR REPLACE TYPE Tp_FuncionarioEfetivo UNDER Tp_Funcionario(
-     salario NUMBER
+     salario NUMBER (9,2)
 );
 /
 
@@ -148,8 +149,8 @@ CREATE OR REPLACE TYPE Tp_Produto AS OBJECT (
     id NUMBER,
     nome VARCHAR2(255)
     valor NUMBER,
-    estoque NUMBER,
-    PontoPedido NUMBER
+    estoque NUMBER (9,2),
+    PontoPedido NUMBER (9,2)
 );
 /
 
