@@ -9,7 +9,7 @@ ALTER TYPE Tp_Promocao ADD ATTRIBUTE (produto REF Tp_Produto);
 -- 1 - N --
 
 
--- Trabalha => EmpresaTerceirizada 1 - (N) Funcionário Terceirizado
+-- Trabalha => EmpresaTerceirizada 1 - (N) FuncionárioTerceirizado
 DROP TYPE Tp_Ref_FuncionarioTerceirizado FORCE;
 CREATE OR REPLACE TYPE Tp_Ref_FuncionarioTerceirizado AS OBJECT
 (
@@ -77,4 +77,37 @@ ALTER TYPE Tp_Sessao ADD ATTRIBUTE (contem Tp_Rel_Contem);
 
 -- N x N --
 
--- Faltando
+
+-- Inclui => Pedido N - N Produto
+-- DROP TYPE Tp_Ref_Pedido FORCE;
+-- CREATE OR REPLACE TYPE Tp_Ref_Pedido AS OBJECT
+-- (
+--     pedido REF Tp_Pedido
+-- ) NOT FINAL;
+-- /
+-- DROP TYPE Tp_Ref_Produto FORCE;
+-- CREATE OR REPLACE TYPE Tp_Ref_Produto AS OBJECT
+-- (
+--     produto REF Tp_Produto
+-- ) NOT FINAL;
+-- /
+DROP TYPE Tp_Rel_Contem FORCE;
+CREATE OR REPLACE TYPE Tp_Rel_Contem AS OBJECT
+(
+    pedido     Tp_Ref_Pedido,
+    produto    Tp_Ref_Produto,
+    quantidade NUMBER,
+    valor      NUMBER
+);
+/
+
+
+-- Movimenta => FuncionárioEfetivo N - N Produto
+DROP TYPE Tp_Rel_Movimenta FORCE;
+CREATE OR REPLACE TYPE Tp_Rel_Movimenta AS OBJECT
+(
+    id         NUMBER,
+    data       DATE,
+    quantidade NUMBER(9, 2)
+);
+/
