@@ -2,7 +2,7 @@
 DROP TABLE Tb_EmpresaTerceirizada;
 CREATE TABLE Tb_EmpresaTerceirizada OF Tp_EmpresaTerceirizada
 (
-    CONSTRAINT Pk_EmpresaTerceirizada PRIMARY KEY (cod)
+    CONSTRAINT Pk_EmpresaTerceirizada PRIMARY KEY (Id)
 );
 DROP TABLE Tb_Departamento;
 CREATE TABLE Tb_Departamento OF Tp_Departamento
