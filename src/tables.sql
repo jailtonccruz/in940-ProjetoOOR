@@ -17,9 +17,11 @@ CREATE TABLE Tb_Cliente of Tp_Cliente (
 ) NESTED TABLE faz STORE AS Nt_Faz_Tb_Cliente;
 
 CREATE TABLE Tb_FuncionarioEfetivo of Tp_FuncionarioEfetivo (
-    cpf     PRIMARY KEY,
-    nome    NOT NULL,
-    salario NOT NULL
+    cpf       PRIMARY KEY,
+    nome      NOT NULL,
+    telefones NOT NULL,
+    endereco  NOT NULL,
+    salario   NOT NULL
 ) NESTED TABLE emite STORE AS Nt_Emite_Tb_FuncionarioEfetivo;
 
 CREATE TABLE Tb_FuncionarioTerceirizado of Tp_FuncionarioTerceirizado (
@@ -44,6 +46,7 @@ CREATE TABLE Tb_Produto of Tp_Produto (
 CREATE TABLE Tb_Promocao of Tp_Promocao (
     qtdMin   NOT NULL,
     desconto NOT NULL
+    --, produto WITH ROWID REFERENCES Tb_Produto
 );
 
 CREATE TABLE Tb_Sessao of Tp_Sessao (

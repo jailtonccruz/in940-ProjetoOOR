@@ -32,10 +32,10 @@ CREATE OR REPLACE TYPE Ar_Fone IS VARRAY (10) OF NUMBER(11);
 
 CREATE OR REPLACE TYPE Tp_Pessoa AS OBJECT
 (
-    cpf      NUMBER(11),
-    nome     VARCHAR2(255),
-    foneNums Ar_fone,
-    endereco Tp_Endereco
+    cpf       NUMBER(11),
+    nome      VARCHAR2(255),
+    telefones Ar_fone,
+    endereco  Tp_Endereco
 ) NOT FINAL;
 /
 
