@@ -1,63 +1,79 @@
+---- TABLES ----
+
+CREATE TABLE Tb_EmpresaTerceirizada OF Tp_EmpresaTerceirizada (
+    id   PRIMARY KEY,
+    nome NOT NULL
+) NESTED TABLE trabalha STORE AS Nt_Trabalha_EmpresaTerceirizada;
+
+CREATE TABLE Tb_Departamento OF Tp_Departamento (
+    id    PRIMARY KEY,
+    nome  NOT NULL,
+    sigla NOT NULL
+) NESTED TABLE pertence STORE AS Nt_Pertence_Tb_Departamento;
+
+CREATE TABLE Tb_Cliente of Tp_Cliente (
+    cpf  PRIMARY KEY,
+    nome NOT NULL
+) NESTED TABLE faz STORE AS Nt_Faz_Tb_Cliente;
+
+CREATE TABLE Tb_FuncionarioEfetivo of Tp_FuncionarioEfetivo (
+    cpf     PRIMARY KEY,
+    nome    NOT NULL,
+    salario NOT NULL
+) NESTED TABLE emite STORE AS Nt_Emite_Tb_FuncionarioEfetivo;
+
+CREATE TABLE Tb_FuncionarioTerceirizado of Tp_FuncionarioTerceirizado (
+    cpf      PRIMARY KEY,
+    nome     NOT NULL,
+    contrato UNIQUE NOT NULL
+) NESTED TABLE emite STORE AS Nt_Emite_Tb_FuncionarioTerceirizado;
+
+CREATE TABLE Tb_Pedido of Tp_Pedido (
+    id   PRIMARY KEY,
+    data NOT NULL
+);
+
+CREATE TABLE Tb_Produto of Tp_Produto (
+    id           PRIMARY KEY,
+    nome         NOT NULL ,
+    valor        NOT NULL,
+    estoque      NOT NULL,
+    limiarPedido NOT NULL
+);
+
+CREATE TABLE Tb_Promocao of Tp_Promocao (
+    qtdMin   NOT NULL,
+    desconto NOT NULL
+);
+
+CREATE TABLE Tb_Sessao of Tp_Sessao (
+    id PRIMARY KEY
+)NESTED TABLE contem STORE AS Nt_Conteme_Tb_Sessao;
+
+---- REL TABLES ----
+
+CREATE TABLE Tb_Rel_Inclui OF Tp_Rel_Inclui (
+    pedido     NOT NULL,
+    quantidade NOT NULL,
+    valor      NOT NULL
+);
+
+CREATE TABLE Tb_Rel_Movimenta OF Tp_Rel_Movimenta (
+    id         PRIMARY KEY,
+    data       NOT NULL,
+    quantidade NOT NULL
+);
+
+---- DROPS ----
 
 DROP TABLE Tb_EmpresaTerceirizada;
-CREATE TABLE Tb_EmpresaTerceirizada OF Tp_EmpresaTerceirizada
-(
-    CONSTRAINT Pk_EmpresaTerceirizada PRIMARY KEY (Id)
-);
 DROP TABLE Tb_Departamento;
-CREATE TABLE Tb_Departamento OF Tp_Departamento
-(
-    CONSTRAINT Pk_Departamento PRIMARY KEY (id)
-);
-
 DROP TABLE Tb_Cliente;
-
-CREATE TABLE Tb_Cliente of Tp_Cliente
-(
-    CONSTRAINT pk_Cliente PRIMARY KEY (cpf)--,
-    --    constraint fk_cliente_pessoa foreign key (cpf) references tp_pessoa(cpf)
-);
-
 DROP TABLE Tb_FuncionarioEfetivo;
-CREATE TABLE Tb_FuncionarioEfetivo of Tp_FuncionarioEfetivo
-(
-    CONSTRAINT Pk_FuncionarioEfetivo PRIMARY KEY (cpf)
-);
-
 DROP TABLE Tb_FuncionarioTerceirizado;
-
-
-CREATE TABLE Tb_FuncionarioTerceirizado of Tp_FuncionarioTerceirizado
-(CONSTRAINT Pk_FuncionarioTerceirizado PRIMARY KEY (cpf),
-CONSTRAINT Fk_FunTerceirizado_Empresa (IdEmpresaTerc)
-FOREIGN KEY Tb_EmpresaTerceirizada (Id)
-);
-
 DROP TABLE Tb_Pedido;
-
-CREATE TABLE Tb_Pedido of Tp_Pedido
-(
-    CONSTRAINT Pk_Pedido PRIMARY KEY (id)
-);
-DROP TABLE Tb_Promocao;
-CREATE TABLE Tb_Promocao of Tp_Promocao;
-
 DROP TABLE Tb_Produto;
-CREATE TABLE Tb_Produto of Tp_Produto
-(
-    CONSTRAINT pk_Produto PRIMARY KEY (id)
-);
+DROP TABLE Tb_Promocao;
 DROP TABLE Tb_Sessao;
-CREATE TABLE Tb_Sessao of Tp_Sessao
-(
-    CONSTRAINT pk_sessao PRIMARY KEY (id)
-);
-CREATE TABLE Tb_Movimento of Tp_Movimento
-(
-    CONSTRAINT pk_Movimento PRIMARY KEY (id)
-);
-
-
-CREATE TABLE Tb_Rel_Contem of Tp_Rel_Contem
-
-CREATE TABLE Tb_Rel_Movimenta OF Tp_Rel_Movimenta
+DROP TABLE Tb_Rel_Inclui;
+DROP TABLE Tb_Rel_Movimenta;
