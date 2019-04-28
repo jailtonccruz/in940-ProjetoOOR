@@ -7,11 +7,13 @@ CREATE TABLE Tb_EmpresaTerceirizada OF Tp_EmpresaTerceirizada
 )
 NESTED TABLE trabalha STORE AS Nt_Trabalha_EmpresaTerc;
 
-CREATE TABLE Tb_Departamento OF Tp_Departamento (
+CREATE TABLE Tb_Departamento OF Tp_Departamento 
+(
     id    CONSTRAINT Pk_Departamento PRIMARY KEY,
     nome  CONSTRAINT Nn_DepartamentoNome CHECK (nome IS NOT NULL),
     sigla CONSTRAINT Nn_DepartamentoSigla CHECK (sigla IS NOT NULL)
-) NESTED TABLE pertence STORE AS Nt_Pertence_Tb_Departamento;
+) 
+NESTED TABLE pertence STORE AS Nt_Pertence_Tb_Departamento;
 
 CREATE TABLE Tb_Cliente of Tp_Cliente (
     cpf  CONSTRAINT Pk_Cliente PRIMARY KEY,
