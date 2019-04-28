@@ -1,9 +1,11 @@
 ---- TABLES ----
 
-CREATE TABLE Tb_EmpresaTerceirizada OF Tp_EmpresaTerceirizada (
-    id   CONSTRAINT Pk_EmpresaTerceirizada PRIMARY KEY,
-    nome CONSTRAINT Nn_EmpresaTerceirizadaNome CHECK (nome IS NOT NULL)
-) NESTED TABLE trabalha STORE AS Nt_Trabalha_EmpresaTerceirizada;
+CREATE TABLE Tb_EmpresaTerceirizada OF Tp_EmpresaTerceirizada
+(
+    cod  CONSTRAINT Pk_EmpresaTerc PRIMARY KEY,
+    nome CONSTRAINT Nn_EmpresaTercNome CHECK (nome IS NOT NULL)
+)
+NESTED TABLE trabalha STORE AS Nt_Trabalha_EmpresaTerc;
 
 CREATE TABLE Tb_Departamento OF Tp_Departamento (
     id    CONSTRAINT Pk_Departamento PRIMARY KEY,
