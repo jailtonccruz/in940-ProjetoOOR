@@ -37,12 +37,6 @@ INSERT INTO Tb_FuncionarioTerceirizado VALUES (Tp_FuncionarioTerceirizado(seq.ne
 INSERT INTO Tb_FuncionarioTerceirizado VALUES (Tp_FuncionarioTerceirizado(seq.nextval, 'FuncT1', ar_fone(1239), Tp_Endereco('rua4','bairro1','cidade1', 'PE'), TP_REL_EMITE(), 9));
 INSERT INTO Tb_FuncionarioTerceirizado VALUES (Tp_FuncionarioTerceirizado(seq.nextval, 'FuncT2', ar_fone(12310), Tp_Endereco('rua3', 'bairro2','cidade1', 'PE'), TP_REL_EMITE(), 10));
 
--- inserting promocao
-INSERT INTO TB_PROMOCAO VALUES (TP_PROMOCAO(200, 20, (select REF(p) from tb_produto p where p.id = 1)));
-INSERT INTO TB_PROMOCAO VALUES (TP_PROMOCAO(200, 10, (select REF(p) from tb_produto p where p.id = 2)));
-INSERT INTO TB_PROMOCAO VALUES (TP_PROMOCAO(200, 30, (select REF(p) from tb_produto p where p.id = 3)));
-
-
 -- inserting produtos
 INSERT INTO TB_PRODUTO VALUES (TP_PRODUTO(seq.nextval, 'Sabonete', 2, 1000, 200));
 INSERT INTO TB_PRODUTO VALUES (TP_PRODUTO(seq.nextval, 'Arroz', 4, 4000, 800));
@@ -53,4 +47,10 @@ INSERT INTO TB_PRODUTO VALUES (TP_PRODUTO(seq.nextval, 'Ralador', 14, 300, 75));
 INSERT INTO TB_PRODUTO VALUES (TP_PRODUTO(seq.nextval, 'Alicate', 9, 1000, 200));
 INSERT INTO TB_PRODUTO VALUES (TP_PRODUTO(seq.nextval, 'Tablet', 600, 300, 75));
 INSERT INTO TB_PRODUTO VALUES (TP_PRODUTO(seq.nextval, 'Notebook', 1550, 500, 100));
+
+-- inserting promocao
+INSERT INTO TB_PROMOCAO VALUES (TP_PROMOCAO(200, 20, (select REF(p) from tb_produto p where p.nome = 'Sabonete')));
+INSERT INTO TB_PROMOCAO VALUES (TP_PROMOCAO(200, 10, (select REF(p) from tb_produto p where p.nome = 'Arroz')));
+INSERT INTO TB_PROMOCAO VALUES (TP_PROMOCAO(200, 30, (select REF(p) from tb_produto p where p.nome = 'Chocolate')));
+
 
