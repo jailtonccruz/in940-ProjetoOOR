@@ -26,7 +26,7 @@ CREATE TABLE Tb_FuncionarioEfetivo of Tp_FuncionarioEfetivo (
 
 CREATE TABLE Tb_FuncionarioTerceirizado of Tp_FuncionarioTerceirizado (
     cpf      CONSTRAINT Pk_FuncionarioTerceirizado PRIMARY KEY,
-    nome     CONSTRAINT Nn_FuncTerceirizadoNome CHECK (nome IS  NOT NULL)NOT NULL,
+    nome     CONSTRAINT Nn_FuncTerceirizadoNome CHECK (nome IS  NOT NULL),
     contrato CONSTRAINT Un_FuncTerceirizadoContrato UNIQUE
 ) NESTED TABLE emite STORE AS Nt_Emite_Tb_FuncTerceirizado;
 
