@@ -3,7 +3,7 @@
 -- Empresa Terceirizada
 CREATE OR REPLACE TYPE Tp_EmpresaTerceirizada AS OBJECT
 (
-    id   NUMBER,
+    cod  NUMBER,
     nome VARCHAR2(255)
 );
 /
@@ -11,7 +11,7 @@ CREATE OR REPLACE TYPE Tp_EmpresaTerceirizada AS OBJECT
 -- Departamento
 CREATE OR REPLACE TYPE Tp_Departamento AS OBJECT
 (
-    id    NUMBER,
+    cod   NUMBER,
     nome  VARCHAR2(255),
     sigla VARCHAR2(255)
 );
@@ -54,7 +54,7 @@ CREATE OR REPLACE TYPE Tp_Cliente UNDER Tp_Pessoa
 -- Funcionário Efetivo
 CREATE OR REPLACE TYPE Tp_FuncionarioEfetivo UNDER Tp_Funcionario
 (
-    salario NUMBER(9, 2)
+    salario NUMBER
 );
 /
 
@@ -68,7 +68,7 @@ CREATE OR REPLACE TYPE Tp_FuncionarioTerceirizado UNDER Tp_Funcionario
 -- Pedido
 CREATE OR REPLACE TYPE Tp_Pedido AS OBJECT
 (
-    id   NUMBER,
+    cod  NUMBER,
     data DATE
 );
 /
@@ -84,7 +84,7 @@ CREATE OR REPLACE TYPE Tp_Promocao AS OBJECT
 -- Produto
 CREATE OR REPLACE TYPE Tp_Produto AS OBJECT
 (
-    id           NUMBER,
+    cod          NUMBER,
     nome         VARCHAR2(255),
     valor        NUMBER,
     estoque      NUMBER,
@@ -95,7 +95,7 @@ CREATE OR REPLACE TYPE Tp_Produto AS OBJECT
 -- Sessão
 CREATE OR REPLACE TYPE Tp_Sessao AS OBJECT
 (
-    id   NUMBER,
+    cod  NUMBER,
     nome VARCHAR2(255)
 );
 /

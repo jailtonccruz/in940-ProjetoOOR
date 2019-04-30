@@ -93,7 +93,7 @@ CREATE OR REPLACE TYPE Tp_Rel_Inclui AS OBJECT
 -- Movimenta => FuncionárioEfetivo N - N Produto
 CREATE OR REPLACE TYPE Tp_Rel_Movimenta AS OBJECT
 (
-    id         NUMBER,
+    cod        NUMBER,
     data       DATE,
     quantidade NUMBER
 );

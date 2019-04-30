@@ -1,19 +1,15 @@
 ---- TABLES ----
 
-CREATE TABLE Tb_EmpresaTerceirizada OF Tp_EmpresaTerceirizada
-(
+CREATE TABLE Tb_EmpresaTerceirizada OF Tp_EmpresaTerceirizada (
     cod  CONSTRAINT Pk_EmpresaTerc PRIMARY KEY,
     nome CONSTRAINT Nn_EmpresaTercNome CHECK (nome IS NOT NULL)
-)
-NESTED TABLE trabalha STORE AS Nt_Trabalha_EmpresaTerc;
+) NESTED TABLE trabalha STORE AS Nt_Trabalha_EmpresaTerceirizada;
 
-CREATE TABLE Tb_Departamento OF Tp_Departamento 
-(
-    id    CONSTRAINT Pk_Departamento PRIMARY KEY,
+CREATE TABLE Tb_Departamento OF Tp_Departamento (
+    cod   CONSTRAINT Pk_Departamento PRIMARY KEY,
     nome  CONSTRAINT Nn_DepartamentoNome CHECK (nome IS NOT NULL),
     sigla CONSTRAINT Nn_DepartamentoSigla CHECK (sigla IS NOT NULL)
-) 
-NESTED TABLE pertence STORE AS Nt_Pertence_Tb_Departamento;
+) NESTED TABLE pertence STORE AS Nt_Pertence_Tb_Departamento;
 
 CREATE TABLE Tb_Cliente of Tp_Cliente (
     cpf  CONSTRAINT Pk_Cliente PRIMARY KEY,
@@ -35,12 +31,12 @@ CREATE TABLE Tb_FuncionarioTerceirizado of Tp_FuncionarioTerceirizado (
 ) NESTED TABLE emite STORE AS Nt_Emite_Tb_FuncTerceirizado;
 
 CREATE TABLE Tb_Pedido of Tp_Pedido (
-    id   CONSTRAINT Pk_Pedido PRIMARY KEY,
+    cod  CONSTRAINT Pk_Pedido PRIMARY KEY,
     data CONSTRAINT Nn_PedidoData CHECK (data IS  NOT NULL)
 );
 
 CREATE TABLE Tb_Produto of Tp_Produto (
-    id           CONSTRAINT Pk_Produto PRIMARY KEY,
+    cod          CONSTRAINT Pk_Produto PRIMARY KEY,
     nome         CONSTRAINT Nn_ProdutoNome CHECK (nome IS  NOT NULL),
     valor        CONSTRAINT Nn_ProdutoValor CHECK (valor IS  NOT NULL),
     estoque      CONSTRAINT Nn_ProdutoEstoque CHECK (estoque IS  NOT NULL),
@@ -50,11 +46,10 @@ CREATE TABLE Tb_Produto of Tp_Produto (
 CREATE TABLE Tb_Promocao of Tp_Promocao (
     qtdMin   NOT NULL,
     desconto NOT NULL
-    --, produto WITH ROWID REFERENCES Tb_Produto
 );
 
 CREATE TABLE Tb_Sessao of Tp_Sessao (
-    id PRIMARY KEY
+    cod PRIMARY KEY
 )NESTED TABLE contem STORE AS Nt_Conteme_Tb_Sessao;
 
 ---- REL TABLES ----
@@ -66,7 +61,7 @@ CREATE TABLE Tb_Rel_Inclui OF Tp_Rel_Inclui (
 );
 
 CREATE TABLE Tb_Rel_Movimenta OF Tp_Rel_Movimenta (
-    id         PRIMARY KEY,
+    cod        PRIMARY KEY,
     data       NOT NULL,
     quantidade NOT NULL
 );
