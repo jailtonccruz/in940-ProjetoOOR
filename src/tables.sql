@@ -63,8 +63,8 @@ CREATE TABLE Tb_Rel_Inclui OF Tp_Rel_Inclui (
 CREATE TABLE Tb_Rel_Movimenta OF Tp_Rel_Movimenta (
     cod        PRIMARY KEY,
     data       NOT NULL,
-    quantidade NOT NULL,
-    tipo       NOT NULL
+    tipo       NOT NULL,
+    quantidade NOT NULL
 );
 
 ---- DROPS ----
