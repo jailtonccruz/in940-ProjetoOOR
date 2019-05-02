@@ -250,7 +250,7 @@ INSERT INTO TABLE (
 INSERT INTO TABLE (
         SELECT c.faz FROM Tb_Cliente c WHERE c.cpf = 07673414490
 ) VALUES (
-        Tp_Ref_Pedido((SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 3'))
+        Tp_Ref_Pedido((SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 3))
 );
 INSERT INTO TABLE (
         SELECT c.faz FROM Tb_Cliente c WHERE c.cpf = 05842364417
