@@ -68,22 +68,10 @@ ALTER TYPE Tp_Sessao ADD ATTRIBUTE (contem Tp_Rel_Contem) CASCADE;
 -- N x N --
 
 -- Inclui => Pedido N - N Produto
--- DROP TYPE Tp_Ref_Pedido FORCE;
--- CREATE OR REPLACE TYPE Tp_Ref_Pedido AS OBJECT
--- (
---     pedido REF Tp_Pedido
--- ) NOT FINAL;
--- /
--- DROP TYPE Tp_Ref_Produto FORCE;
--- CREATE OR REPLACE TYPE Tp_Ref_Produto AS OBJECT
--- (
---     produto REF Tp_Produto
--- ) NOT FINAL;
--- /
 CREATE OR REPLACE TYPE Tp_Rel_Inclui AS OBJECT
 (
-    pedido     Tp_Ref_Pedido,
-    produto    Tp_Ref_Produto,
+    pedido     REF Tp_Pedido,
+    produto    Ref Tp_Produto,
     quantidade NUMBER,
     valor      NUMBER
 );
@@ -93,9 +81,11 @@ CREATE OR REPLACE TYPE Tp_Rel_Inclui AS OBJECT
 -- Movimenta => FuncionárioEfetivo N - N Produto
 CREATE OR REPLACE TYPE Tp_Rel_Movimenta AS OBJECT
 (
-    cod        NUMBER,
-    data       DATE,
-    quantidade NUMBER
+    funcionario REF Tp_FuncionarioEfetivo,
+    produto     REF Tp_Produto,
+    cod         NUMBER,
+    data        DATE,
+    quantidade  NUMBER
 );
 /
 
