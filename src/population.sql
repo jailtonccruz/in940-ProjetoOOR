@@ -85,11 +85,11 @@ INSERT INTO Tb_Sessao VALUES (
                 Sq_Sessao.NEXTVAL,
                 'Sessao 0',
                 Tp_Rel_Contem(
-                        Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 0')),
-                        Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 1')),
-                        Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 2')),
-                        Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 3')),
-                        Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 4'))
+                        Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 1)),
+                        Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 2')),
+                        Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 3)),
+                        Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 4)),
+                        Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 5))
                 )
         )
 );
@@ -98,11 +98,11 @@ INSERT INTO Tb_Sessao VALUES (
                 Sq_Sessao.NEXTVAL,
                 'Sessao 1',
                 Tp_Rel_Contem(
-                        Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 5')),
-                        Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 6')),
-                        Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 7')),
-                        Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 8')),
-                        Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 9'))
+                        Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 6)),
+                        Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 7)),
+                        Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 8)),
+                        Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 9)),
+                        Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 10))
                 )
         )
 );
