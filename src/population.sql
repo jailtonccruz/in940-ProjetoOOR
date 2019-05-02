@@ -1,23 +1,3 @@
--- sequences
-
--- Excluindo as Sequencias
-DROP SEQUENCE Sq_EmpresaTerceirizada;
-DROP SEQUENCE Sq_Departamento;
-DROP SEQUENCE Sq_Produto;
-DROP SEQUENCE Sq_Sessao;
-DROP SEQUENCE Sq_Pedido;
--- Criando as Sequencias
-CREATE SEQUENCE Sq_EmpresaTerceirizada START WITH 0 MINVALUE 0;
-CREATE SEQUENCE Sq_Departamento        START WITH 0 MINVALUE 0;
-CREATE SEQUENCE Sq_Produto             START WITH 0 MINVALUE 0;
-CREATE SEQUENCE Sq_Sessao              START WITH 0 MINVALUE 0;
-CREATE SEQUENCE Sq_Pedido              START WITH 0 MINVALUE 0;
--- Inicializand as Sequencias
-SELECT Sq_EmpresaTerceirizada.NEXTVAL FROM DUAL;
-SELECT Sq_Departamento.NEXTVAL        FROM DUAL;
-SELECT Sq_Produto.NEXTVAL             FROM DUAL;
-SELECT Sq_Sessao.NEXTVAL              FROM DUAL;
-SELECT Sq_Pedido.NEXTVAL              FROM DUAL;
 
 -- inserting clients
 INSERT INTO Tb_Cliente VALUES (Tp_Cliente (07671368458, 'Cliente 0', Ar_Fone(81000000000), Tp_Endereco('Rua 0', 'Bairro 0', 'Cidade 0', 'E0'), Tp_Rel_Faz()));
