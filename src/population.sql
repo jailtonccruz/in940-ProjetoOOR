@@ -46,7 +46,7 @@ INSERT INTO Tb_Departamento VALUES (
                 'Departamento 0',
                 'Dp0',
                 Tp_Rel_Pertence(
-                        Tp_Ref_Funcionario((SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpfe = 07526066462)),
+                        Tp_Ref_Funcionario((SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpf = 07526066462)),
                         Tp_Ref_Funcionario((SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpf = 10712130403)),
                         Tp_Ref_Funcionario((SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpf = 04242732414)),
                         Tp_Ref_Funcionario((SELECT REF(f) FROM Tb_FuncionarioTerceirizado f WHERE f.cpf = 03406454402)),
@@ -86,7 +86,7 @@ INSERT INTO Tb_Sessao VALUES (
                 'Sessao 0',
                 Tp_Rel_Contem(
                         Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 1)),
-                        Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 2')),
+                        Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 2)),
                         Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 3)),
                         Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 4)),
                         Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 5))
