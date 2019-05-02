@@ -20,7 +20,7 @@ INSERT INTO Tb_FuncionarioTerceirizado VALUES (Tp_FuncionarioTerceirizado(038629
 
 INSERT INTO Tb_EmpresaTerceirizada VALUES (
         Tp_EmpresaTerceirizada(
-                Sq_EmpresaTerceirizada,
+                Sq_EmpresaTerceirizada.NEXTVAL,
                 'Empresa Terceirizada 0',
                 Tp_Rel_Trabalha(
                         Tp_Ref_FuncionarioTerceirizado((SELECT REF(ft) FROM Tb_FuncionarioTerceirizado ft WHERE ft.cpf = 03406454402)),
@@ -31,7 +31,7 @@ INSERT INTO Tb_EmpresaTerceirizada VALUES (
 );
 INSERT INTO Tb_EmpresaTerceirizada VALUES (
         Tp_EmpresaTerceirizada(
-                Sq_EmpresaTerceirizada,
+                Sq_EmpresaTerceirizada.NEXTVAL,
                 'Empresa Terceirizada 1',
                 Tp_Rel_Trabalha(
                         Tp_Ref_FuncionarioTerceirizado((SELECT REF(ft) FROM Tb_FuncionarioTerceirizado ft WHERE ft.cpf = 05947772400)),
@@ -42,7 +42,7 @@ INSERT INTO Tb_EmpresaTerceirizada VALUES (
 
 INSERT INTO Tb_Departamento VALUES (
         Tp_Departamento(
-                Sq_Departamento,
+                Sq_Departamento.NEXTVAL,
                 'Departamento 0',
                 'Dp0',
                 Tp_Rel_Pertence(
@@ -56,7 +56,7 @@ INSERT INTO Tb_Departamento VALUES (
 );
 INSERT INTO Tb_Departamento VALUES (
         Tp_Departamento(
-                Sq_Departamento,
+                Sq_Departamento.NEXTVAL,
                 'Departamento 1',
                 'Dp1',
                 Tp_Rel_Pertence(
@@ -69,20 +69,20 @@ INSERT INTO Tb_Departamento VALUES (
         )
 );
 
-INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto, 'Produto 0', 0.50, 1000, 200));
-INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto, 'Produto 1', 1.50, 1001, 201));
-INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto, 'Produto 2', 2.50, 1002, 202));
-INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto, 'Produto 3', 3.50, 1003, 203));
-INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto, 'Produto 4', 4.50, 1004, 204));
-INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto, 'Produto 5', 5.50, 1005, 205));
-INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto, 'Produto 6', 6.50, 1006, 206));
-INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto, 'Produto 7', 7.50, 1007, 207));
-INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto, 'Produto 8', 8.50, 1008, 208));
-INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto, 'Produto 9', 9.50, 1009, 209));
+INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 0', 0.50, 1000, 200));
+INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 1', 1.50, 1001, 201));
+INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 2', 2.50, 1002, 202));
+INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 3', 3.50, 1003, 203));
+INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 4', 4.50, 1004, 204));
+INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 5', 5.50, 1005, 205));
+INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 6', 6.50, 1006, 206));
+INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 7', 7.50, 1007, 207));
+INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 8', 8.50, 1008, 208));
+INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 9', 9.50, 1009, 209));
 
 INSERT INTO Tb_Sessao VALUES (
         Tp_Sessao(
-                Sq_Sessao,
+                Sq_Sessao.NEXTVAL,
                 'Sessao 0',
                 Tp_Rel_Contem(
                         Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 0')),
@@ -95,7 +95,7 @@ INSERT INTO Tb_Sessao VALUES (
 );
 INSERT INTO Tb_Sessao VALUES (
         Tp_Sessao(
-                Sq_Sessao,
+                Sq_Sessao.NEXTVAL,
                 'Sessao 1',
                 Tp_Rel_Contem(
                         Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 5')),
@@ -108,11 +108,11 @@ INSERT INTO Tb_Sessao VALUES (
 );
 
 
-INSERT INTO Tb_Pedido VALUES (Sq_Pedido, '01-JAN-2018');
-INSERT INTO Tb_Pedido VALUES (Sq_Pedido, '01-FEB-2018');
-INSERT INTO Tb_Pedido VALUES (Sq_Pedido, '01-MAR-2018');
-INSERT INTO Tb_Pedido VALUES (Sq_Pedido, '01-APR-2018');
-INSERT INTO Tb_Pedido VALUES (Sq_Pedido, '01-MAY-2018');
+INSERT INTO Tb_Pedido VALUES (Sq_Pedido.NEXTVAL, '01-JAN-2018');
+INSERT INTO Tb_Pedido VALUES (Sq_Pedido.NEXTVAL, '01-FEB-2018');
+INSERT INTO Tb_Pedido VALUES (Sq_Pedido.NEXTVAL, '01-MAR-2018');
+INSERT INTO Tb_Pedido VALUES (Sq_Pedido.NEXTVAL, '01-APR-2018');
+INSERT INTO Tb_Pedido VALUES (Sq_Pedido.NEXTVAL, '01-MAY-2018');
 
 INSERT INTO Tb_Rel_Inclui VALUES (
         (SELECT REF(p) FROM Tb_Pedido p WHERE p.data = '01-JAN-2018'),
@@ -232,7 +232,7 @@ INSERT INTO Tb_Rel_Movimenta VALUES (
         Tp_Rel_Movimenta(
                 (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.nome = 'Funcionario Efetivo 0'),
                 (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 0'),
-                seq.nextval,
+                Sq.Movimenta.NEXTVAL,
                 '02-JAN-2018',
                 'e',
                 100
@@ -242,7 +242,7 @@ INSERT INTO Tb_Rel_Movimenta VALUES (
         Tp_Rel_Movimenta(
                 (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.nome = 'Funcionario Efetivo 1'),
                 (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 1'),
-                seq.nextval,
+                Sq.Movimenta.NEXTVAL,
                 '02-FEB-2018',
                 'e',
                 101
@@ -252,7 +252,7 @@ INSERT INTO Tb_Rel_Movimenta VALUES (
         Tp_Rel_Movimenta(
                 (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.nome = 'Funcionario Efetivo 2'),
                 (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 2'),
-                seq.nextval,
+                Sq.Movimenta.NEXTVAL,
                 '02-MAR-2018',
                 'e',
                 102
@@ -262,7 +262,7 @@ INSERT INTO Tb_Rel_Movimenta VALUES (
         Tp_Rel_Movimenta(
                 (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.nome = 'Funcionario Efetivo 3'),
                 (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 3'),
-                seq.nextval,
+                Sq.Movimenta.NEXTVAL,
                 '02-APR-2018',
                 'e',
                 103
@@ -272,7 +272,7 @@ INSERT INTO Tb_Rel_Movimenta VALUES (
         Tp_Rel_Movimenta(
                 (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.nome = 'Funcionario Efetivo 4'),
                 (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 4'),
-                seq.nextval,
+                Sq.Movimenta.NEXTVAL,
                 '02-MAY-2018',
                 'e',
                 104
