@@ -56,6 +56,7 @@ CREATE TABLE Tb_Sessao of Tp_Sessao (
 
 CREATE TABLE Tb_Rel_Inclui OF Tp_Rel_Inclui (
     pedido     NOT NULL,
+    produto    NOT NULL,
     quantidade NOT NULL,
     valor      NOT NULL
 );
