@@ -86,6 +86,7 @@ CREATE OR REPLACE TYPE Tp_Rel_Movimenta AS OBJECT
     cod         NUMBER,
     data        DATE,
     quantidade  NUMBER
+    tipo        CHAR(1)
 );
 /
 
