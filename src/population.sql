@@ -268,7 +268,7 @@ INSERT INTO Tb_Rel_Movimenta VALUES (
         Tp_Rel_Movimenta(
                 (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpf = 07526066462),
                 (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 1),
-                Sq.Movimenta.NEXTVAL,
+                Sq_Movimenta.NEXTVAL,
                 '02-JAN-2018',
                 'E',
                 100
@@ -278,8 +278,8 @@ INSERT INTO Tb_Rel_Movimenta VALUES (
         Tp_Rel_Movimenta(
                 (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpf = 10712130403),
                 (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 2),
-                Sq.Movimenta.NEXTVAL,
-                '02-FEB-2018',
+                Sq_Movimenta.NEXTVAL,
+                '02-FEV-2018',
                 'E',
                 101
         )
@@ -288,7 +288,7 @@ INSERT INTO Tb_Rel_Movimenta VALUES (
         Tp_Rel_Movimenta(
                 (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpf = 07526066462),
                 (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 3),
-                Sq.Movimenta.NEXTVAL,
+                Sq_Movimenta.NEXTVAL,
                 '02-MAR-2018',
                 'S',
                 102
@@ -298,8 +298,8 @@ INSERT INTO Tb_Rel_Movimenta VALUES (
         Tp_Rel_Movimenta(
                 (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpf = 08244993448),
                 (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 4),
-                Sq.Movimenta.NEXTVAL,
-                '02-APR-2018',
+                Sq_Movimenta.NEXTVAL,
+                '02-ABR-2018',
                 'E',
                 103
         )
@@ -308,8 +308,8 @@ INSERT INTO Tb_Rel_Movimenta VALUES (
         Tp_Rel_Movimenta(
                 (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpf = 07526066462),
                 (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 5),
-                Sq.Movimenta.NEXTVAL,
-                '02-MAY-2018',
+                Sq_Movimenta.NEXTVAL,
+                '02-MAI-2018',
                 'S',
                 104
         )
