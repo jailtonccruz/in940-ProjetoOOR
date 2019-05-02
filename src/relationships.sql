@@ -85,8 +85,8 @@ CREATE OR REPLACE TYPE Tp_Rel_Movimenta AS OBJECT
     produto     REF Tp_Produto,
     cod         NUMBER,
     data        DATE,
+    tipo        CHAR(1),
     quantidade  NUMBER
-    tipo        CHAR(1)
 );
 /
 

@@ -236,6 +236,7 @@ INSERT INTO Tb_Rel_Movimenta VALUES (
                 (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 0'),
                 seq.nextval,
                 '02-JAN-2018',
+                'e',
                 100
         )
 );
@@ -245,6 +246,7 @@ INSERT INTO Tb_Rel_Movimenta VALUES (
                 (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 1'),
                 seq.nextval,
                 '02-FEB-2018',
+                'e',
                 101
         )
 );
@@ -254,6 +256,7 @@ INSERT INTO Tb_Rel_Movimenta VALUES (
                 (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 2'),
                 seq.nextval,
                 '02-MAR-2018',
+                'e',
                 102
         )
 );
@@ -263,6 +266,7 @@ INSERT INTO Tb_Rel_Movimenta VALUES (
                 (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 3'),
                 seq.nextval,
                 '02-APR-2018',
+                'e',
                 103
         )
 );
@@ -272,7 +276,7 @@ INSERT INTO Tb_Rel_Movimenta VALUES (
                 (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 4'),
                 seq.nextval,
                 '02-MAY-2018',
+                'e',
                 104
         )
 );
-
