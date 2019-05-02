@@ -306,8 +306,8 @@ INSERT INTO Tb_Rel_Movimenta VALUES (
 );
 INSERT INTO Tb_Rel_Movimenta VALUES (
         Tp_Rel_Movimenta(
-                (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.nome = 'Funcionario Efetivo 4'),
-                (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 4'),
+                (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpf = 07526066462),
+                (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 5),
                 Sq.Movimenta.NEXTVAL,
                 '02-MAY-2018',
                 'S',
