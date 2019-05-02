@@ -3,13 +3,13 @@
 CREATE TABLE Tb_EmpresaTerceirizada OF Tp_EmpresaTerceirizada (
     cod  CONSTRAINT Pk_EmpresaTerc PRIMARY KEY,
     nome CONSTRAINT Nn_EmpresaTercNome CHECK (nome IS NOT NULL)
-) NESTED TABLE trabalha STORE AS Nt_Trabalha_EmpresaTerceirizada;
+) NESTED TABLE trabalha STORE AS Nt_Trabalha;
 
 CREATE TABLE Tb_Departamento OF Tp_Departamento (
     cod   CONSTRAINT Pk_Departamento PRIMARY KEY,
     nome  CONSTRAINT Nn_DepartamentoNome CHECK (nome IS NOT NULL),
     sigla CONSTRAINT Nn_DepartamentoSigla CHECK (sigla IS NOT NULL)
-) NESTED TABLE pertence STORE AS Nt_Pertence_Tb_Departamento;
+) NESTED TABLE pertence STORE AS Nt_Pertence;
 
 CREATE TABLE Tb_Cliente of Tp_Cliente (
     cpf  CONSTRAINT Pk_Cliente PRIMARY KEY,
@@ -22,13 +22,13 @@ CREATE TABLE Tb_FuncionarioEfetivo of Tp_FuncionarioEfetivo (
     telefones CONSTRAINT Nn_FuncionarioEfetivoTels CHECK (telefones IS NOT NULL),
     endereco  CONSTRAINT Nn_FuncionarioEfetivoEndereco CHECK (endereco IS NOT NULL),
     salario   CONSTRAINT Nn_FuncionarioEfetivoSalario CHECK (salario IS NOT NULL)
-) NESTED TABLE emite STORE AS Nt_Emite_Tb_FuncionarioEfetivo;
+    ) NESTED TABLE emite STORE AS Nt_Emite0;
 
 CREATE TABLE Tb_FuncionarioTerceirizado of Tp_FuncionarioTerceirizado (
     cpf      CONSTRAINT Pk_FuncionarioTerceirizado PRIMARY KEY,
     nome     CONSTRAINT Nn_FuncTerceirizadoNome CHECK (nome IS  NOT NULL),
     contrato CONSTRAINT Un_FuncTerceirizadoContrato UNIQUE
-) NESTED TABLE emite STORE AS Nt_Emite_Tb_FuncTerceirizado;
+) NESTED TABLE emite STORE AS Nt_Emite1;
 
 CREATE TABLE Tb_Pedido of Tp_Pedido (
     cod  CONSTRAINT Pk_Pedido PRIMARY KEY,
@@ -50,7 +50,7 @@ CREATE TABLE Tb_Promocao of Tp_Promocao (
 
 CREATE TABLE Tb_Sessao of Tp_Sessao (
     cod PRIMARY KEY
-)NESTED TABLE contem STORE AS Nt_Conteme_Tb_Sessao;
+) NESTED TABLE contem STORE AS Nt_Contem;
 
 ---- REL TABLES ----
 
