@@ -206,7 +206,7 @@ INSERT INTO Tb_Rel_Inclui VALUES (
 );
 INSERT INTO Tb_Rel_Inclui VALUES (
         (SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 5),
-        (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 10'),
+        (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 10),
         51,
         (SELECT p.valor FROM Tb_Produto p WHERE p.cod = 10)
 );
@@ -314,3 +314,8 @@ INSERT INTO Tb_Rel_Movimenta VALUES (
                 104
         )
 );
+
+INSERT INTO Tb_Promocao VALUES (3, 0.2, (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 1));
+INSERT INTO Tb_Promocao VALUES (5, 0.3, (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 3));
+INSERT INTO Tb_Promocao VALUES (10, 0.1, (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 2));
+INSERT INTO Tb_Promocao VALUES (4, 0.25, (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 4));
