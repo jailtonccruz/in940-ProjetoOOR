@@ -1,5 +1,4 @@
 
--- inserting clients
 INSERT INTO Tb_Cliente VALUES (Tp_Cliente (07671368458, 'Cliente 0', Ar_Fone(81000000000), Tp_Endereco('Rua 0', 'Bairro 0', 'Cidade 0', 'E0'), Tp_Rel_Faz()));
 INSERT INTO Tb_Cliente VALUES (Tp_Cliente (05842364417, 'Cliente 1', Ar_Fone(81000000001), Tp_Endereco('Rua 1', 'Bairro 1', 'Cidade 1', 'E0'), Tp_Rel_Faz()));
 INSERT INTO Tb_Cliente VALUES (Tp_Cliente (07673414490, 'Cliente 2', Ar_Fone(81000000002), Tp_Endereco('Rua 2', 'Bairro 2', 'Cidade 2', 'E0'), Tp_Rel_Faz()));
@@ -108,11 +107,11 @@ INSERT INTO Tb_Sessao VALUES (
 );
 
 
-INSERT INTO Tb_Pedido VALUES (Sq_Pedido.NEXTVAL, '01-JAN-2018');
-INSERT INTO Tb_Pedido VALUES (Sq_Pedido.NEXTVAL, '01-FEV-2018');
-INSERT INTO Tb_Pedido VALUES (Sq_Pedido.NEXTVAL, '01-MAR-2018');
-INSERT INTO Tb_Pedido VALUES (Sq_Pedido.NEXTVAL, '01-ABR-2018');
-INSERT INTO Tb_Pedido VALUES (Sq_Pedido.NEXTVAL, '01-MAI-2018');
+INSERT INTO Tb_Pedido VALUES (Sq_Pedido.NEXTVAL, TO_DATE('01/01/2018', 'dd/mm/yyyy'));
+INSERT INTO Tb_Pedido VALUES (Sq_Pedido.NEXTVAL, TO_DATE('01/02/2018', 'dd/mm/yyyy'));
+INSERT INTO Tb_Pedido VALUES (Sq_Pedido.NEXTVAL, TO_DATE('01/03/2018', 'dd/mm/yyyy'));
+INSERT INTO Tb_Pedido VALUES (Sq_Pedido.NEXTVAL, TO_DATE('01/04/2018', 'dd/mm/yyyy'));
+INSERT INTO Tb_Pedido VALUES (Sq_Pedido.NEXTVAL, TO_DATE('01/05/2018', 'dd/mm/yyyy'));
 
 INSERT INTO Tb_Rel_Inclui VALUES (
         (SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 1),
@@ -206,7 +205,7 @@ INSERT INTO Tb_Rel_Inclui VALUES (
 );
 INSERT INTO Tb_Rel_Inclui VALUES (
         (SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 5),
-        (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 10'),
+        (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 10),
         51,
         (SELECT p.valor FROM Tb_Produto p WHERE p.cod = 10)
 );
@@ -269,7 +268,7 @@ INSERT INTO Tb_Rel_Movimenta VALUES (
                 (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpf = 07526066462),
                 (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 1),
                 Sq_Movimenta.NEXTVAL,
-                '02-JAN-2018',
+                TO_DATE('02/01/2018', 'dd/mm/yyyy'),
                 'E',
                 100
         )
@@ -279,7 +278,7 @@ INSERT INTO Tb_Rel_Movimenta VALUES (
                 (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpf = 10712130403),
                 (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 2),
                 Sq_Movimenta.NEXTVAL,
-                '02-FEV-2018',
+                TO_DATE('02/02/2018', 'dd/mm/yyyy'),
                 'E',
                 101
         )
@@ -289,7 +288,7 @@ INSERT INTO Tb_Rel_Movimenta VALUES (
                 (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpf = 07526066462),
                 (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 3),
                 Sq_Movimenta.NEXTVAL,
-                '02-MAR-2018',
+                TO_DATE('02/03/2018', 'dd/mm/yyyy'),
                 'S',
                 102
         )
@@ -299,7 +298,7 @@ INSERT INTO Tb_Rel_Movimenta VALUES (
                 (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpf = 08244993448),
                 (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 4),
                 Sq_Movimenta.NEXTVAL,
-                '02-ABR-2018',
+                TO_DATE('02/04/2018', 'dd/mm/yyyy'),
                 'E',
                 103
         )
@@ -309,7 +308,7 @@ INSERT INTO Tb_Rel_Movimenta VALUES (
                 (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpf = 07526066462),
                 (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 5),
                 Sq_Movimenta.NEXTVAL,
-                '02-MAI-2018',
+                TO_DATE('02/05/2018', 'dd/mm/yyyy'),
                 'S',
                 104
         )

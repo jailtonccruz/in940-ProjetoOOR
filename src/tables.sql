@@ -1,72 +1,81 @@
 ---- TABLES ----
 
-CREATE TABLE Tb_EmpresaTerceirizada OF Tp_EmpresaTerceirizada (
-    cod  CONSTRAINT Pk_EmpresaTerc PRIMARY KEY,
-    nome CONSTRAINT Nn_EmpresaTercNome CHECK (nome IS NOT NULL)
-) NESTED TABLE trabalha STORE AS Nt_Trabalha;
+CREATE TABLE Tb_EmpresaTerceirizada OF Tp_EmpresaTerceirizada NESTED TABLE trabalha STORE AS Nt_Trabalha;
+ALTER TABLE Tb_EmpresaTerceirizada
+    ADD PRIMARY KEY (cod);
+ALTER TABLE Tb_EmpresaTerceirizada
+    ADD CHECK (nome IS NOT NULL AND trabalha IS NOT NULL);
 
-CREATE TABLE Tb_Departamento OF Tp_Departamento (
-    cod   CONSTRAINT Pk_Departamento PRIMARY KEY,
-    nome  CONSTRAINT Nn_DepartamentoNome CHECK (nome IS NOT NULL),
-    sigla CONSTRAINT Nn_DepartamentoSigla CHECK (sigla IS NOT NULL)
-) NESTED TABLE pertence STORE AS Nt_Pertence;
 
-CREATE TABLE Tb_Cliente of Tp_Cliente (
-    cpf  CONSTRAINT Pk_Cliente PRIMARY KEY,
-    nome CONSTRAINT Nn_ClienteNome CHECK (nome IS NOT NULL)
-) NESTED TABLE faz STORE AS Nt_Faz_Tb_Cliente;
+CREATE TABLE Tb_Departamento OF Tp_Departamento NESTED TABLE pertence STORE AS Nt_Pertence;
+ALTER TABLE Tb_Departamento
+    ADD PRIMARY KEY (cod);
+ALTER TABLE Tb_Departamento
+    ADD CHECK ( nome IS NOT NULL AND sigla IS NOT NULL and pertence IS NOT NULL );
 
-CREATE TABLE Tb_FuncionarioEfetivo of Tp_FuncionarioEfetivo (
-    cpf       CONSTRAINT Pk_FuncionarioEfetivo PRIMARY KEY,
-    nome      CONSTRAINT Nn_FuncionarioEfetivoNome CHECK (nome IS NOT NULL),
-    telefones CONSTRAINT Nn_FuncionarioEfetivoTels CHECK (telefones IS NOT NULL),
-    endereco  CONSTRAINT Nn_FuncionarioEfetivoEndereco CHECK (endereco IS NOT NULL),
-    salario   CONSTRAINT Nn_FuncionarioEfetivoSalario CHECK (salario IS NOT NULL)
-    ) NESTED TABLE emite STORE AS Nt_Emite0;
 
-CREATE TABLE Tb_FuncionarioTerceirizado of Tp_FuncionarioTerceirizado (
-    cpf      CONSTRAINT Pk_FuncionarioTerceirizado PRIMARY KEY,
-    nome     CONSTRAINT Nn_FuncTerceirizadoNome CHECK (nome IS  NOT NULL),
-    contrato CONSTRAINT Un_FuncTerceirizadoContrato UNIQUE
-) NESTED TABLE emite STORE AS Nt_Emite1;
+CREATE TABLE Tb_Cliente of Tp_Cliente NESTED TABLE faz STORE AS Nt_Faz;
+ALTER TABLE Tb_Cliente
+    ADD PRIMARY KEY (cpf);
+ALTER TABLE Tb_Cliente
+    ADD CHECK ( nome IS NOT NULL AND telefones IS NOT NULL AND endereco IS NOT NULL AND faz IS NOT NULL );
 
-CREATE TABLE Tb_Pedido of Tp_Pedido (
-    cod  CONSTRAINT Pk_Pedido PRIMARY KEY,
-    data CONSTRAINT Nn_PedidoData CHECK (data IS  NOT NULL)
-);
 
-CREATE TABLE Tb_Produto of Tp_Produto (
-    cod          CONSTRAINT Pk_Produto PRIMARY KEY,
-    nome         CONSTRAINT Nn_ProdutoNome CHECK (nome IS  NOT NULL),
-    valor        CONSTRAINT Nn_ProdutoValor CHECK (valor IS  NOT NULL),
-    estoque      CONSTRAINT Nn_ProdutoEstoque CHECK (estoque IS  NOT NULL),
-    limiarPedido CONSTRAINT Nn_ProdutoLimiarPedido CHECK (LimiarPedido IS  NOT NULL)
-);
+CREATE TABLE Tb_FuncionarioEfetivo of Tp_FuncionarioEfetivo NESTED TABLE emite STORE AS Nt_Emite_FE;
+ALTER TABLE Tb_FuncionarioEfetivo
+    ADD PRIMARY KEY (cpf);
+ALTER TABLE Tb_FuncionarioEfetivo
+    ADD CHECK ( nome IS NOT NULL AND telefones IS NOT NULL AND endereco IS NOT NULL AND emite IS NOT NULL AND
+                salario IS NOT NULL);
 
-CREATE TABLE Tb_Promocao of Tp_Promocao (
-    qtdMin   NOT NULL,
-    desconto NOT NULL
-);
 
-CREATE TABLE Tb_Sessao of Tp_Sessao (
-    cod PRIMARY KEY
-) NESTED TABLE contem STORE AS Nt_Contem;
+CREATE TABLE Tb_FuncionarioTerceirizado of Tp_FuncionarioTerceirizado NESTED TABLE emite STORE AS Nt_Emite_FT;
+ALTER TABLE Tb_FuncionarioTerceirizado
+    ADD PRIMARY KEY (cpf);
+ALTER TABLE Tb_FuncionarioTerceirizado
+    ADD CHECK ( nome IS NOT NULL AND telefones IS NOT NULL AND endereco IS NOT NULL AND emite IS NOT NULL);
+ALTER TABLE Tb_FuncionarioTerceirizado
+    ADD UNIQUE (contrato);
+
+
+CREATE TABLE Tb_Pedido of Tp_Pedido;
+ALTER TABLE Tb_Pedido
+    ADD PRIMARY KEY (cod);
+ALTER TABLE Tb_Pedido
+    ADD CHECK ( data IS NOT NULL );
+
+
+CREATE TABLE Tb_Produto of Tp_Produto;
+ALTER TABLE Tb_Produto
+    ADD PRIMARY KEY (cod);
+ALTER TABLE Tb_Produto
+    ADD CHECK (nome IS NOT NULL AND valor IS NOT NULL AND estoque IS NOT NULL AND limiarPedido IS NOT NULL);
+
+
+CREATE TABLE Tb_Promocao of Tp_Promocao;
+ALTER TABLE Tb_Promocao
+    ADD CHECK (qtdMin IS NOT NULL AND desconto IS NOT NULL);
+
+
+CREATE TABLE Tb_Sessao of Tp_Sessao NESTED TABLE contem STORE AS Nt_Contem;
+ALTER TABLE Tb_Sessao
+    ADD PRIMARY KEY (cod);
+
+
 
 ---- REL TABLES ----
 
-CREATE TABLE Tb_Rel_Inclui OF Tp_Rel_Inclui (
-    pedido     NOT NULL,
-    produto    NOT NULL,
-    quantidade NOT NULL,
-    valor      NOT NULL
-);
+CREATE TABLE Tb_Rel_Inclui OF Tp_Rel_Inclui;
+ALTER TABLE Tb_Rel_Inclui
+    ADD CHECK (pedido IS NOT NULL AND produto IS NOT NULL AND quantidade IS NOT NULL AND valor IS NOT NULL);
 
-CREATE TABLE Tb_Rel_Movimenta OF Tp_Rel_Movimenta (
-    cod        PRIMARY KEY,
-    data       NOT NULL,
-    tipo       NOT NULL,
-    quantidade NOT NULL
-);
+
+CREATE TABLE Tb_Rel_Movimenta OF Tp_Rel_Movimenta;
+ALTER TABLE Tb_Rel_Movimenta
+    ADD PRIMARY KEY (cod);
+ALTER TABLE Tb_Rel_Movimenta
+    ADD CHECK (data IS NOT NULL AND tipo IS NOT NULL AND quantidade IS NOT NULL);
+
 
 ---- DROPS ----
 
