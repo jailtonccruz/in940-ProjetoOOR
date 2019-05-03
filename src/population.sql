@@ -46,7 +46,7 @@ INSERT INTO Tb_Departamento VALUES (
                 'Departamento 0',
                 'Dp0',
                 Tp_Rel_Pertence(
-                        Tp_Ref_Funcionario((SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpfe = 07526066462)),
+                        Tp_Ref_Funcionario((SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpf = 07526066462)),
                         Tp_Ref_Funcionario((SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpf = 10712130403)),
                         Tp_Ref_Funcionario((SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpf = 04242732414)),
                         Tp_Ref_Funcionario((SELECT REF(f) FROM Tb_FuncionarioTerceirizado f WHERE f.cpf = 03406454402)),
@@ -86,7 +86,7 @@ INSERT INTO Tb_Sessao VALUES (
                 'Sessao 0',
                 Tp_Rel_Contem(
                         Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 1)),
-                        Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 2')),
+                        Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 2)),
                         Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 3)),
                         Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 4)),
                         Tp_Ref_Produto((SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 5))
@@ -109,172 +109,208 @@ INSERT INTO Tb_Sessao VALUES (
 
 
 INSERT INTO Tb_Pedido VALUES (Sq_Pedido.NEXTVAL, '01-JAN-2018');
-INSERT INTO Tb_Pedido VALUES (Sq_Pedido.NEXTVAL, '01-FEB-2018');
+INSERT INTO Tb_Pedido VALUES (Sq_Pedido.NEXTVAL, '01-FEV-2018');
 INSERT INTO Tb_Pedido VALUES (Sq_Pedido.NEXTVAL, '01-MAR-2018');
-INSERT INTO Tb_Pedido VALUES (Sq_Pedido.NEXTVAL, '01-APR-2018');
-INSERT INTO Tb_Pedido VALUES (Sq_Pedido.NEXTVAL, '01-MAY-2018');
+INSERT INTO Tb_Pedido VALUES (Sq_Pedido.NEXTVAL, '01-ABR-2018');
+INSERT INTO Tb_Pedido VALUES (Sq_Pedido.NEXTVAL, '01-MAI-2018');
 
 INSERT INTO Tb_Rel_Inclui VALUES (
-        (SELECT REF(p) FROM Tb_Pedido p WHERE p.data = '01-JAN-2018'),
-        (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 0'),
+        (SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 1),
+        (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 1),
         10,
-        (SELECT p.valor FROM Tb_Produto p WHERE p.nome = 'Produto 0')
+        (SELECT p.valor FROM Tb_Produto p WHERE p.cod = 1)
 );
 INSERT INTO Tb_Rel_Inclui VALUES (
-        (SELECT REF(p) FROM Tb_Pedido p WHERE p.data = '01-JAN-2018'),
-        (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 1'),
+        (SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 1),
+        (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 2),
         11,
-        (SELECT p.valor FROM Tb_Produto p WHERE p.nome = 'Produto 1')
+        (SELECT p.valor FROM Tb_Produto p WHERE p.cod = 2)
 );
 INSERT INTO Tb_Rel_Inclui VALUES (
-        (SELECT REF(p) FROM Tb_Pedido p WHERE p.data = '01-FEB-2018'),
-        (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 2'),
+        (SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 1),
+        (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 6),
+        11,
+        (SELECT p.valor FROM Tb_Produto p WHERE p.cod = 6)
+);
+INSERT INTO Tb_Rel_Inclui VALUES (
+        (SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 1),
+        (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 3),
         20,
-        (SELECT p.valor FROM Tb_Produto p WHERE p.nome = 'Produto 2')
+        (SELECT p.valor FROM Tb_Produto p WHERE p.cod = 3)
 );
 INSERT INTO Tb_Rel_Inclui VALUES (
-        (SELECT REF(p) FROM Tb_Pedido p WHERE p.data = '01-FEB-2018'),
-        (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 3'),
+        (SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 2),
+        (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 4),
         21,
-        (SELECT p.valor FROM Tb_Produto p WHERE p.nome = 'Produto 3')
+        (SELECT p.valor FROM Tb_Produto p WHERE p.cod = 4)
 );
 INSERT INTO Tb_Rel_Inclui VALUES (
-        (SELECT REF(p) FROM Tb_Pedido p WHERE p.data = '01-MAR-2018'),
-        (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 4'),
+        (SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 3),
+        (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 5),
         30,
-        (SELECT p.valor FROM Tb_Produto p WHERE p.nome = 'Produto 4')
+        (SELECT p.valor FROM Tb_Produto p WHERE p.cod = 5)
 );
 INSERT INTO Tb_Rel_Inclui VALUES (
-        (SELECT REF(p) FROM Tb_Pedido p WHERE p.data = '01-MAR-2018'),
-        (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 5'),
+        (SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 3),
+        (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 6),
         31,
-        (SELECT p.valor FROM Tb_Produto p WHERE p.nome = 'Produto 5')
+        (SELECT p.valor FROM Tb_Produto p WHERE p.cod = 6)
 );
 INSERT INTO Tb_Rel_Inclui VALUES (
-        (SELECT REF(p) FROM Tb_Pedido p WHERE p.data = '01-APR-2018'),
-        (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 6'),
+        (SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 3),
+        (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 8),
+        31,
+        (SELECT p.valor FROM Tb_Produto p WHERE p.cod = 8)
+);
+INSERT INTO Tb_Rel_Inclui VALUES (
+        (SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 3),
+        (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 10),
+        31,
+        (SELECT p.valor FROM Tb_Produto p WHERE p.cod = 10)
+);
+INSERT INTO Tb_Rel_Inclui VALUES (
+        (SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 4),
+        (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 7),
         40,
-        (SELECT p.valor FROM Tb_Produto p WHERE p.nome = 'Produto 6')
+        (SELECT p.valor FROM Tb_Produto p WHERE p.cod = 7)
 );
 INSERT INTO Tb_Rel_Inclui VALUES (
-        (SELECT REF(p) FROM Tb_Pedido p WHERE p.data = '01-APR-2018'),
-        (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 7'),
+        (SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 4),
+        (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 8),
         41,
-        (SELECT p.valor FROM Tb_Produto p WHERE p.nome = 'Produto 7')
+        (SELECT p.valor FROM Tb_Produto p WHERE p.cod = 8)
 );
 INSERT INTO Tb_Rel_Inclui VALUES (
-        (SELECT REF(p) FROM Tb_Pedido p WHERE p.data = '01-MAY-2018'),
-        (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 8'),
+        (SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 5),
+        (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 1),
         50,
-        (SELECT p.valor FROM Tb_Produto p WHERE p.nome = 'Produto 8')
+        (SELECT p.valor FROM Tb_Produto p WHERE p.cod = 1)
 );
 INSERT INTO Tb_Rel_Inclui VALUES (
-        (SELECT REF(p) FROM Tb_Pedido p WHERE p.data = '01-MAY-2018'),
-        (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 9'),
+        (SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 5),
+        (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 4),
+        50,
+        (SELECT p.valor FROM Tb_Produto p WHERE p.cod = 4)
+);
+INSERT INTO Tb_Rel_Inclui VALUES (
+        (SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 5),
+        (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 7),
+        50,
+        (SELECT p.valor FROM Tb_Produto p WHERE p.cod = 7)
+);
+INSERT INTO Tb_Rel_Inclui VALUES (
+        (SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 5),
+        (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 9),
+        50,
+        (SELECT p.valor FROM Tb_Produto p WHERE p.cod = 9)
+);
+INSERT INTO Tb_Rel_Inclui VALUES (
+        (SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 5),
+        (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 10'),
         51,
-        (SELECT p.valor FROM Tb_Produto p WHERE p.nome = 'Produto 9')
+        (SELECT p.valor FROM Tb_Produto p WHERE p.cod = 10)
 );
 
 INSERT INTO TABLE (
-        SELECT f.emite FROM Tb_FuncionarioEfetivo f WHERE f.nome = 'Funcionario Efetivo 0'
+        SELECT f.emite FROM Tb_FuncionarioEfetivo f WHERE f.cpf = 07526066462
 ) VALUES (
-        Tp_Ref_Pedido((SELECT REF(p) FROM Tb_Pedido p WHERE p.data = '01-JAN-2018'))
+        Tp_Ref_Pedido((SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 1))
 );
 INSERT INTO TABLE (
-        SELECT f.emite FROM Tb_FuncionarioTerceirizado f WHERE f.nome = 'Funcionario Terceirizado 1'
+        SELECT f.emite FROM Tb_FuncionarioTerceirizado f WHERE f.cpf = 05947772400
 ) VALUES (
-        Tp_Ref_Pedido((SELECT REF(p) FROM Tb_Pedido p WHERE p.data = '01-FEB-2018'))
+        Tp_Ref_Pedido((SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 2))
 );
 INSERT INTO TABLE (
-        SELECT f.emite FROM Tb_FuncionarioEfetivo f WHERE f.nome = 'Funcionario Efetivo 2'
+        SELECT f.emite FROM Tb_FuncionarioEfetivo f WHERE f.cpf = 04242732414
 ) VALUES (
-        Tp_Ref_Pedido((SELECT REF(p) FROM Tb_Pedido p WHERE p.data = '01-MAR-2018'))
+        Tp_Ref_Pedido((SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 3))
 );
 INSERT INTO TABLE (
-        SELECT f.emite FROM Tb_FuncionarioTerceirizado f WHERE f.nome = 'Funcionario Terceirizado 3'
+        SELECT f.emite FROM Tb_FuncionarioTerceirizado f WHERE f.cpf = 02791142495
 ) VALUES (
-        Tp_Ref_Pedido((SELECT REF(p) FROM Tb_Pedido p WHERE p.data = '01-APR-2018'))
+        Tp_Ref_Pedido((SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 4))
 );
 INSERT INTO TABLE (
-        SELECT f.emite FROM Tb_FuncionarioEfetivo f WHERE f.nome = 'Funcionario Efetivo 4'
+        SELECT f.emite FROM Tb_FuncionarioEfetivo f WHERE f.cpf = 04242732414
 ) VALUES (
-        Tp_Ref_Pedido((SELECT REF(p) FROM Tb_Pedido p WHERE p.data = '01-MAY-2018'))
+        Tp_Ref_Pedido((SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 5))
 );
 
 INSERT INTO TABLE (
-        SELECT c.faz FROM Tb_Cliente c WHERE c.nome = 'Cliente 0'
+        SELECT c.faz FROM Tb_Cliente c WHERE c.cpf = 05842364417
 ) VALUES (
-        Tp_Ref_Pedido((SELECT REF(p) FROM Tb_Pedido p WHERE p.data = '01-JAN-2018'))
+        Tp_Ref_Pedido((SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 1))
 );
 INSERT INTO TABLE (
-        SELECT c.faz FROM Tb_Cliente c WHERE c.nome = 'Cliente 1'
+        SELECT c.faz FROM Tb_Cliente c WHERE c.cpf = 05842364417
 ) VALUES (
-        Tp_Ref_Pedido((SELECT REF(p) FROM Tb_Pedido p WHERE p.data = '01-FEB-2018'))
+        Tp_Ref_Pedido((SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 2))
 );
 INSERT INTO TABLE (
-        SELECT c.faz FROM Tb_Cliente c WHERE c.nome = 'Cliente 2'
+        SELECT c.faz FROM Tb_Cliente c WHERE c.cpf = 07673414490
 ) VALUES (
-        Tp_Ref_Pedido((SELECT REF(p) FROM Tb_Pedido p WHERE p.data = '01-MAR-2018'))
+        Tp_Ref_Pedido((SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 3))
 );
 INSERT INTO TABLE (
-        SELECT c.faz FROM Tb_Cliente c WHERE c.nome = 'Cliente 3'
+        SELECT c.faz FROM Tb_Cliente c WHERE c.cpf = 05842364417
 ) VALUES (
-        Tp_Ref_Pedido((SELECT REF(p) FROM Tb_Pedido p WHERE p.data = '01-APR-2018'))
+        Tp_Ref_Pedido((SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 4))
 );
 INSERT INTO TABLE (
-        SELECT c.faz FROM Tb_Cliente c WHERE c.nome = 'Cliente 4'
+        SELECT c.faz FROM Tb_Cliente c WHERE c.cpf = 09190535496
 ) VALUES (
-        Tp_Ref_Pedido((SELECT REF(p) FROM Tb_Pedido p WHERE p.data = '01-MAY-2018'))
+        Tp_Ref_Pedido((SELECT REF(p) FROM Tb_Pedido p WHERE p.cod = 5))
 );
 
 
 INSERT INTO Tb_Rel_Movimenta VALUES (
         Tp_Rel_Movimenta(
-                (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.nome = 'Funcionario Efetivo 0'),
-                (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 0'),
-                Sq.Movimenta.NEXTVAL,
+                (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpf = 07526066462),
+                (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 1),
+                Sq_Movimenta.NEXTVAL,
                 '02-JAN-2018',
-                'e',
+                'E',
                 100
         )
 );
 INSERT INTO Tb_Rel_Movimenta VALUES (
         Tp_Rel_Movimenta(
-                (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.nome = 'Funcionario Efetivo 1'),
-                (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 1'),
-                Sq.Movimenta.NEXTVAL,
-                '02-FEB-2018',
-                'e',
+                (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpf = 10712130403),
+                (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 2),
+                Sq_Movimenta.NEXTVAL,
+                '02-FEV-2018',
+                'E',
                 101
         )
 );
 INSERT INTO Tb_Rel_Movimenta VALUES (
         Tp_Rel_Movimenta(
-                (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.nome = 'Funcionario Efetivo 2'),
-                (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 2'),
-                Sq.Movimenta.NEXTVAL,
+                (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpf = 07526066462),
+                (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 3),
+                Sq_Movimenta.NEXTVAL,
                 '02-MAR-2018',
-                'e',
+                'S',
                 102
         )
 );
 INSERT INTO Tb_Rel_Movimenta VALUES (
         Tp_Rel_Movimenta(
-                (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.nome = 'Funcionario Efetivo 3'),
-                (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 3'),
-                Sq.Movimenta.NEXTVAL,
-                '02-APR-2018',
-                'e',
+                (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpf = 08244993448),
+                (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 4),
+                Sq_Movimenta.NEXTVAL,
+                '02-ABR-2018',
+                'E',
                 103
         )
 );
 INSERT INTO Tb_Rel_Movimenta VALUES (
         Tp_Rel_Movimenta(
-                (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.nome = 'Funcionario Efetivo 4'),
-                (SELECT REF(p) FROM Tb_Produto p WHERE p.nome = 'Produto 4'),
-                Sq.Movimenta.NEXTVAL,
-                '02-MAY-2018',
-                'e',
+                (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpf = 07526066462),
+                (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = 5),
+                Sq_Movimenta.NEXTVAL,
+                '02-MAI-2018',
+                'S',
                 104
         )
 );
