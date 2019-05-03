@@ -7,3 +7,13 @@ CREATE OR REPLACE TYPE BODY Tp_FuncionarioEfetivo AS
     END;
 END;
 /
+
+ALTER TYPE Tp_FuncionarioEfetivo ADD MEMBER FUNCTION funcMes (mes NUMBER ) RETURN NUMBER CASCADE;
+
+CREATE OR REPLACE TYPE BODY Tp_FuncionarioEfetivo AS
+    MEMBER FUNCTION funcMes (mes NUMBER ) RETURN NUMBER IS
+        BEGIN
+            RETURN (SELECT count (PEDIDO) from TB_FUNCIONARIOEFETIVO where MONTH (PEDIDO.date) = mes);
+        END;
+END;
+/
