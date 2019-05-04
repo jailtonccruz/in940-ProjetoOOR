@@ -1,4 +1,4 @@
-ALTER TYPE Tp_EmpresaTerceirizada ADD STATIC PROCEDURE cadastraEmpresa (cod_ NUMBER, nome_ VARCHAR2) CASCADE;
+ALTER TYPE Tp_EmpresaTerceirizada ADD STATIC PROCEDURE cadastra (cod_ NUMBER, nome_ VARCHAR2) CASCADE;
 /
 
 CREATE OR REPLACE TYPE BODY Tp_EmpresaTerceirizada AS

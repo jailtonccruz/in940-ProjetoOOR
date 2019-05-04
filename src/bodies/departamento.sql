@@ -1,6 +1,6 @@
 ALTER TYPE Tp_Departamento
-    ADD STATIC PROCEDURE cadastraDepartamento (cod_ NUMBER, nome_ VARCHAR2, sigla_ VARCHAR2),
-    ADD MEMBER PROCEDURE registraNoDepartamento (funcionario_ Tp_Funcionario)
+    ADD STATIC PROCEDURE cadastra (cod_ NUMBER, nome_ VARCHAR2, sigla_ VARCHAR2),
+    ADD MEMBER PROCEDURE registraFuncionario (funcionario_ Tp_Funcionario)
     CASCADE;
 /
 
