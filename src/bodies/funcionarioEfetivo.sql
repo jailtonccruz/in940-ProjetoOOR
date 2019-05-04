@@ -37,15 +37,13 @@ CREATE OR REPLACE TYPE BODY Tp_FuncionarioEfetivo AS
                 DBMS_OUTPUT.PUT_LINE('movimentação ilegal de saida : estoque < quantidade');
             ELSE
                 INSERT INTO Tb_Rel_Movimenta
-                VALUES (
-                           Tp_Rel_Movimenta(
-                                       (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpf = SELF.cpf),
-                                       (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = produto_.cod),
-                                       data_,
-                                       tipo_,
-                                       quantidade_
-                               )
-                       );
+                VALUES (Tp_Rel_Movimenta(
+                            (SELECT REF(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpf = SELF.cpf),
+                            (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = produto_.cod),
+                            data_,
+                            tipo_,
+                            quantidade_
+                    ));
 
                 IF tipo_ = 'S' THEN
                     estoqueFinal := produto_.estoque - quantidade_;
@@ -53,10 +51,9 @@ CREATE OR REPLACE TYPE BODY Tp_FuncionarioEfetivo AS
                     estoqueFinal := produto_.estoque + quantidade_;
                 END IF;
 
-
+                UPDATE Tb_Produto p SET p.estoque = estoqueFinal WHERE p.cod = produto_.cod;
                 DBMS_OUTPUT.PUT_LINE('produto: ' || produto_.nome);
                 DBMS_OUTPUT.PUT_LINE('  estoque anterior: ' || produto_.estoque);
-                UPDATE Tb_Produto p SET p.estoque = estoqueFinal WHERE p.cod = produto_.cod;
                 DBMS_OUTPUT.PUT_LINE('  estoque atual: ' || estoqueFinal);
 
             END IF;
