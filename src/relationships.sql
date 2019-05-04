@@ -101,4 +101,5 @@ DROP TYPE Tp_Rel_Emite FORCE;
 DROP TYPE Tp_Rel_Faz FORCE;
 DROP TYPE Tp_Ref_Produto FORCE;
 DROP TYPE Tp_Rel_Contem FORCE;
+DROP TYPE Tp_Rel_Inclui FORCE;
 DROP TYPE Tp_Rel_Movimenta FORCE;

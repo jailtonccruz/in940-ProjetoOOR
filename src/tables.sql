@@ -1,5 +1,7 @@
 ---- TABLES ----
 
+CREATE SEQUENCE seq START WITH 1 INCREMENT BY 1;
+
 CREATE TABLE Tb_EmpresaTerceirizada OF Tp_EmpresaTerceirizada NESTED TABLE trabalha STORE AS Nt_Trabalha;
 ALTER TABLE Tb_EmpresaTerceirizada
     ADD PRIMARY KEY (cod);
@@ -18,14 +20,14 @@ CREATE TABLE Tb_Cliente of Tp_Cliente NESTED TABLE faz STORE AS Nt_Faz;
 ALTER TABLE Tb_Cliente
     ADD PRIMARY KEY (cpf);
 ALTER TABLE Tb_Cliente
-    ADD CHECK ( nome IS NOT NULL AND telefones IS NOT NULL AND endereco IS NOT NULL AND faz IS NOT NULL );
+    ADD CHECK ( nome IS NOT NULL AND faz IS NOT NULL );
 
 
 CREATE TABLE Tb_FuncionarioEfetivo of Tp_FuncionarioEfetivo NESTED TABLE emite STORE AS Nt_Emite_FE;
 ALTER TABLE Tb_FuncionarioEfetivo
     ADD PRIMARY KEY (cpf);
 ALTER TABLE Tb_FuncionarioEfetivo
-    ADD CHECK ( nome IS NOT NULL AND telefones IS NOT NULL AND endereco IS NOT NULL AND emite IS NOT NULL AND
+    ADD CHECK ( nome IS NOT NULL AND telefone IS NOT NULL AND endereco IS NOT NULL AND emite IS NOT NULL AND
                 salario IS NOT NULL);
 
 
@@ -33,7 +35,7 @@ CREATE TABLE Tb_FuncionarioTerceirizado of Tp_FuncionarioTerceirizado NESTED TAB
 ALTER TABLE Tb_FuncionarioTerceirizado
     ADD PRIMARY KEY (cpf);
 ALTER TABLE Tb_FuncionarioTerceirizado
-    ADD CHECK ( nome IS NOT NULL AND telefones IS NOT NULL AND endereco IS NOT NULL AND emite IS NOT NULL);
+    ADD CHECK ( nome IS NOT NULL AND telefone IS NOT NULL AND emite IS NOT NULL);
 ALTER TABLE Tb_FuncionarioTerceirizado
     ADD UNIQUE (contrato);
 
@@ -76,6 +78,7 @@ ALTER TABLE Tb_Rel_Movimenta
 
 ---- DROPS ----
 
+DROP SEQUENCE seq;
 DROP TABLE Tb_EmpresaTerceirizada;
 DROP TABLE Tb_Departamento;
 DROP TABLE Tb_Cliente;
