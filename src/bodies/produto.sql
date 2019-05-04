@@ -1,28 +1,21 @@
--- Function para checar a necessidade de solicitar novos produtos para o estoque
+ALTER TYPE Tp_Produto
+    ADD STATIC PROCEDURE cadastra (nome_ VARCHAR2, valor_ NUMBER, estoque_ NUMBER, limiarPedido_ NUMBER)
+    CASCADE;
 
-ALTER TYPE TP_PRODUTO ADD MEMBER FUNCTION solicitarCompra RETURN BOOLEAN CASCADE;
 
-CREATE OR REPLACE TYPE BODY TP_PRODUTO AS
-    MEMBER FUNCTION solicitarCompra RETURN BOOLEAN IS
+CREATE OR REPLACE TYPE BODY Tp_Produto AS
+
+    STATIC PROCEDURE cadastra (nome_ VARCHAR2, valor_ NUMBER, estoque_ NUMBER, limiarPedido_ NUMBER) IS
+        cod_ NUMBER := Sq_Produto.nextval;
         BEGIN
-            RETURN ESTOQUE < LIMIARPEDIDO;
+            INSERT INTO Tb_Produto VALUES (Tp_Produto(cod_, nome_, valor_, estoque_, limiarPedido_));
+            DBMS_OUTPUT.PUT_LINE('produto criado');
+            DBMS_OUTPUT.PUT_LINE('    nome: ' || nome_);
+            DBMS_OUTPUT.PUT_LINE('    valor: RS ' || valor_);
+            DBMS_OUTPUT.PUT_LINE('    estoque: ' || estoque_);
+            DBMS_OUTPUT.PUT_LINE('    limiar pedido: ' || limiarPedido_);
         END;
-END;
-/
 
-
-ALTER TYPE TP_PRODUTO ADD MEMBER PROCEDURE exibirDetalhes (SELF TP_PRODUTO) CASCADE;
-
-CREATE OR REPLACE TYPE BODY TP_PRODUTO AS
-    MEMBER PROCEDURE exibirDetalhes (SELF TP_PRODUTO) IS
-        BEGIN
-            DBMS_OUTPUT.PUT_LINE('Detalhes de um Projeto');
-            DBMS_OUTPUT.PUT_LINE('Nome: ' ||NOME);
-            DBMS_OUTPUT.PUT_LINE('Estoque: ' || TO_CHAR(ESTOQUE));
-            DBMS_OUTPUT.PUT_LINE('Valor: ' || 'R$. ' || TO_CHAR(valor));
-            DBMS_OUTPUT.PUT_LINE('Limiar: ' || TO_CHAR(LIMIARPEDIDO));
-
-        END;
 END;
 
 /
