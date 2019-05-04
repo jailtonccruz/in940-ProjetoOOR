@@ -22,10 +22,8 @@ CREATE OR REPLACE TYPE BODY Tp_FuncionarioEfetivo AS
     -- Movimenta o produto recebido, indicando se a moviemntação é de entrada 'E' ou saída 'S', e a quantidade
     -- A data atual é usada na movimentação
     MEMBER PROCEDURE movimentaProduto (produto_ Tp_Produto, tipo_ CHAR, quantidade_ NUMBER) IS
-        data_ DATE := NULL;
         BEGIN
-            SELECT SYSDATE INTO data_ FROM DUAL;
-            SELF.movimentaProduto(produto_, tipo_, quantidade_, data_);
+            SELF.movimentaProduto(produto_, tipo_, quantidade_, SYSDATE);
         END;
 
 
