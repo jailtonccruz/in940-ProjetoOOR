@@ -8,17 +8,12 @@ CREATE OR REPLACE TYPE BODY Tp_Funcionario AS
 
     -- Realiza um venda de produtos criando o pedido, relacionando-o com os produtos, ao funcionado e ao cliente
     MEMBER PROCEDURE realizaVenda (cliente_ Tp_Cliente, produtos_ Ar_Produtos, quantidade_ Ar_Numbers) IS
-        cod_ NUMBER := Sq_Pedido.nextval;
         pedido_ Tp_Pedido := NULL;
         pedidoRef_ REF Tp_Pedido := NULL;
         emEfetivo NUMBER := 0;
         BEGIN
-            pedido_ := Tp_Pedido(cod_, SYSDATE);
-            INSERT INTO Tb_Pedido VALUES (pedido_);
-            DBMS_OUTPUT.PUT_LINE('novo pedido criado');
-            DBMS_OUTPUT.PUT_LINE('    cod: ' || cod_);
-
-            SELECT REF(p) INTO pedidoRef_ FROM Tb_Pedido p WHERE p.cod = cod_;
+            pedido_ := Tp_Pedido.cadastraRetorna();
+            SELECT REF(p) INTO pedidoRef_ FROM Tb_Pedido p WHERE p.cod = pedido_.cod;
 
             FOR i IN 1..produtos_.COUNT
                 LOOP
