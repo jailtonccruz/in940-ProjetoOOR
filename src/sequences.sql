@@ -1,4 +1,4 @@
--- SEQUENCES
+---- SEQUENCES ----
 
 CREATE SEQUENCE Sq_EmpresaTerceirizada START WITH 0 MINVALUE 0;
 CREATE SEQUENCE Sq_Departamento        START WITH 0 MINVALUE 0;
@@ -15,7 +15,7 @@ SELECT Sq_Pedido.NEXTVAL              FROM DUAL;
 SELECT Sq_Movimenta.NEXTVAL           FROM DUAL;
 
 
--- DROPS
+---- DROPS ----
 
 DROP SEQUENCE Sq_EmpresaTerceirizada;
 DROP SEQUENCE Sq_Departamento;

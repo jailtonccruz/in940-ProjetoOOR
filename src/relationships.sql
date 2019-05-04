@@ -83,7 +83,6 @@ CREATE OR REPLACE TYPE Tp_Rel_Movimenta AS OBJECT
 (
     funcionario REF Tp_FuncionarioEfetivo,
     produto     REF Tp_Produto,
-    cod         NUMBER,
     data        DATE,
     tipo        CHAR(1),
     quantidade  NUMBER

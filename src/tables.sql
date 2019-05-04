@@ -62,7 +62,6 @@ ALTER TABLE Tb_Sessao
     ADD PRIMARY KEY (cod);
 
 
-
 ---- REL TABLES ----
 
 CREATE TABLE Tb_Rel_Inclui OF Tp_Rel_Inclui;
@@ -71,8 +70,6 @@ ALTER TABLE Tb_Rel_Inclui
 
 
 CREATE TABLE Tb_Rel_Movimenta OF Tp_Rel_Movimenta;
-ALTER TABLE Tb_Rel_Movimenta
-    ADD PRIMARY KEY (cod);
 ALTER TABLE Tb_Rel_Movimenta
     ADD CHECK (data IS NOT NULL AND tipo IS NOT NULL AND quantidade IS NOT NULL);
 
