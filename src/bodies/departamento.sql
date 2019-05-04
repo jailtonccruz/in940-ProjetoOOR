@@ -7,7 +7,7 @@ ALTER TYPE Tp_Departamento
 CREATE OR REPLACE TYPE BODY Tp_Departamento AS
 
     -- Cadastra um novo departamento na base de dados
-    STATIC PROCEDURE cadastraDepartamento (cod_ NUMBER, nome_ VARCHAR2, sigla_ VARCHAR2) IS
+    STATIC PROCEDURE cadastra (cod_ NUMBER, nome_ VARCHAR2, sigla_ VARCHAR2) IS
         BEGIN
             INSERT INTO Tb_Departamento VALUES (Tp_Departamento(cod_, nome_, sigla_, Tp_Rel_Pertence()));
             DBMS_OUTPUT.PUT_LINE('departamento criado:' || nome_);
@@ -15,7 +15,7 @@ CREATE OR REPLACE TYPE BODY Tp_Departamento AS
 
 
     -- Adiciona o funcionario neste departamento, se o funcionario já está em outro departamento, ele é removido dele.
-    MEMBER PROCEDURE registraNoDepartamento (funcionario_ Tp_Funcionario) IS
+    MEMBER PROCEDURE registraFuncionario (funcionario_ Tp_Funcionario) IS
         emDepartamento NUMBER := 0;
         CURSOR departamentos IS (
             SELECT *
