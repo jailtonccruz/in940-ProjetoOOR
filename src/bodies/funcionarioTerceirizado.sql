@@ -5,7 +5,7 @@ ALTER TYPE Tp_FuncionarioTerceirizado
 
 CREATE OR REPLACE TYPE BODY Tp_FuncionarioTerceirizado AS
 
-    -- Cadastra uma novo funcionario e o relaciona a empresa recebida.
+    -- Cadastra um novo funcionario e o relaciona a empresa recebida.
     STATIC PROCEDURE cadastra (cpf_ NUMBER, nome_ VARCHAR2, telefone_ NUMBER, endereco_ Tp_Endereco, empresa_ Tp_EmpresaTerceirizada) IS
         BEGIN
             INSERT INTO Tb_FuncionarioTerceirizado

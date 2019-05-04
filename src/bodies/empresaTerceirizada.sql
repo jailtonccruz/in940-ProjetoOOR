@@ -3,6 +3,7 @@ ALTER TYPE Tp_EmpresaTerceirizada ADD STATIC PROCEDURE cadastra (cod_ NUMBER, no
 
 CREATE OR REPLACE TYPE BODY Tp_EmpresaTerceirizada AS
 
+
     -- Cadastra uma nova empresa terceirizada na base de dados
     STATIC PROCEDURE cadastra (cod_ NUMBER, nome_ VARCHAR2) IS
         BEGIN

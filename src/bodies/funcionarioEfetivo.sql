@@ -7,7 +7,8 @@ ALTER TYPE Tp_FuncionarioEfetivo
 
 CREATE OR REPLACE TYPE BODY Tp_FuncionarioEfetivo AS
 
-    -- Cadastra uma novo funcionario.
+
+    -- Cadastra um novo funcionario.
     STATIC PROCEDURE cadastra (cpf_ NUMBER, nome_ VARCHAR2, telefone_ NUMBER, endereco_ Tp_Endereco, salario_ NUMBER) IS
         BEGIN
             INSERT INTO Tb_FuncionarioEfetivo
@@ -16,10 +17,12 @@ CREATE OR REPLACE TYPE BODY Tp_FuncionarioEfetivo AS
                    );
         END;
 
+
     MEMBER FUNCTION orderPorSalario RETURN NUMBER IS
         BEGIN
             RETURN salario;
         END;
+
 
     MEMBER FUNCTION funcMes (mes NUMBER ) RETURN NUMBER IS
         BEGIN
