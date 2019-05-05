@@ -1,17 +1,18 @@
-ALTER TYPE Tp_Produto
-    ADD STATIC FUNCTION cadastra (nome_ VARCHAR2, valor_ NUMBER, estoque_ NUMBER, limiarPedido_ NUMBER) RETURN Tp_Produto
+ALTER TYPE Tp_promocao
+    ADD STATIC FUNCTION cadastra (quantidade_ NUMBER, desconto_ NUMBER, de_ DATE, ate_ DATE, produto_ Tp_Produto) RETURN Tp_Promocao
     CASCADE;
 
 
-CREATE OR REPLACE TYPE BODY Tp_Produto AS
+CREATE OR REPLACE TYPE BODY Tp_promocao AS
 
-    -- Cadastra novo produto
-    STATIC FUNCTION cadastra (nome_ VARCHAR2, valor_ NUMBER, estoque_ NUMBER, limiarPedido_ NUMBER) RETURN Tp_Produto IS
-        produto_ Tp_Produto := Tp_Produto(seq.nextval, nome_, valor_, estoque_, limiarPedido_);
+    -- Cadastra nova promoção
+    STATIC FUNCTION cadastra (quantidade_ NUMBER, desconto_ NUMBER, de_ DATE, ate_ DATE, produto_ Tp_Produto) RETURN Tp_Promocao IS
+        promocao_ Tp_Promocao := Tp_Promocao(seq.nextval, quantidade_, desconto_, de_, ate_, NULL);
         BEGIN
-            INSERT INTO Tb_Produto VALUES (produto_);
-            DBMS_OUTPUT.PUT_LINE('produto => cod: ' || produto_.cod || ', nome: ' || produto_.nome);
-            RETURN produto_;
+            SELECT REF(p) INTO promocao_.produto FROM Tb_Produto p WHERE p.cod = produto_.cod;
+            INSERT INTO Tb_Promocao VALUES (promocao_);
+            DBMS_OUTPUT.PUT_LINE('promocao => cod: ' || promocao_.cod);
+            RETURN promocao_;
         END;
 
 END;

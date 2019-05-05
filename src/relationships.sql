@@ -6,7 +6,6 @@
 ALTER TYPE Tp_Promocao ADD ATTRIBUTE (produto REF Tp_Produto) CASCADE;
 
 
-
 -- 1 - N --
 
 -- Trabalha => EmpresaTerceirizada 1 - (N) FuncionárioTerceirizado
@@ -42,7 +41,7 @@ CREATE OR REPLACE TYPE Tp_Rel_Emite AS TABLE OF Tp_Ref_Pedido;
 ALTER TYPE Tp_Funcionario ADD ATTRIBUTE (emite Tp_Rel_Emite) CASCADE;
 
 
--- Faz => Client 1 - (N) Pedido
+-- Faz => Cliente 1 - N Pedido
 -- CREATE OR REPLACE TYPE Tp_Ref_Pedido AS OBJECT
 -- (
 --     pedido REF Tp_Pedido
@@ -64,7 +63,6 @@ CREATE OR REPLACE TYPE Tp_Rel_Contem AS TABLE OF Tp_Ref_Produto;
 ALTER TYPE Tp_Sessao ADD ATTRIBUTE (contem Tp_Rel_Contem) CASCADE;
 
 
-
 -- N x N --
 
 -- Inclui => Pedido N - N Produto
@@ -77,7 +75,6 @@ CREATE OR REPLACE TYPE Tp_Rel_Inclui AS OBJECT
 );
 /
 
-
 -- Movimenta => FuncionárioEfetivo N - N Produto
 CREATE OR REPLACE TYPE Tp_Rel_Movimenta AS OBJECT
 (
@@ -88,6 +85,14 @@ CREATE OR REPLACE TYPE Tp_Rel_Movimenta AS OBJECT
     quantidade  NUMBER
 );
 /
+
+-- Participa => Compra[Faz] N - N Promocao
+-- Implementado com a referencia de Pedido ao inves de uma referencia a uma chave na nested table faz em cliente.
+CREATE OR REPLACE TYPE Tp_Rel_Participa AS OBJECT
+(
+    compra   REF Tp_Pedido,
+    promocao REF Tp_Promocao
+);
 
 
 ---- DROPS ----
@@ -103,3 +108,4 @@ DROP TYPE Tp_Ref_Produto FORCE;
 DROP TYPE Tp_Rel_Contem FORCE;
 DROP TYPE Tp_Rel_Inclui FORCE;
 DROP TYPE Tp_Rel_Movimenta FORCE;
+DROP TYPE Tp_Rel_Participa FORCE;

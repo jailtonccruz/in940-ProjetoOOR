@@ -56,7 +56,7 @@ ALTER TABLE Tb_Produto
 
 CREATE TABLE Tb_Promocao of Tp_Promocao;
 ALTER TABLE Tb_Promocao
-    ADD CHECK (qtdMin IS NOT NULL AND desconto IS NOT NULL);
+    ADD CHECK (quantidade IS NOT NULL AND desconto IS NOT NULL AND de IS NOT NULL AND ate IS NOT NULL);
 
 
 CREATE TABLE Tb_Sessao of Tp_Sessao NESTED TABLE contem STORE AS Nt_Contem;
@@ -75,6 +75,10 @@ CREATE TABLE Tb_Rel_Movimenta OF Tp_Rel_Movimenta;
 ALTER TABLE Tb_Rel_Movimenta
     ADD CHECK (data IS NOT NULL AND tipo IS NOT NULL AND quantidade IS NOT NULL);
 
+CREATE TABLE Tb_Rel_Participa OF Tp_Rel_Participa;
+ALTER TABLE Tb_Rel_Participa
+    ADD CHECK (compra IS NOT NULL AND promocao IS NOT NULL);
+
 
 ---- DROPS ----
 
@@ -90,3 +94,4 @@ DROP TABLE Tb_Promocao;
 DROP TABLE Tb_Sessao;
 DROP TABLE Tb_Rel_Inclui;
 DROP TABLE Tb_Rel_Movimenta;
+DROP TABLE Tb_Rel_Participa;
