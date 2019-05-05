@@ -26,6 +26,7 @@ CREATE OR REPLACE TYPE BODY Tp_Departamento AS
         departamento_ departamentos_%ROWTYPE := NULL;
         efetivo_ NUMBER := 0;
         BEGIN
+            DBMS_OUTPUT.PUT_LINE('registraFuncionario: ' || funcionario_.nome);
             FOR d IN departamentos_
                 LOOP
                     SELECT COUNT(*) into emDepartamento_
@@ -41,22 +42,22 @@ CREATE OR REPLACE TYPE BODY Tp_Departamento AS
                 DELETE
                 FROM TABLE (SELECT d.pertence FROM Tb_Departamento d WHERE d.cod = departamento_.cod) t
                 WHERE t.funcionario.cpf = funcionario_.cpf;
-                DBMS_OUTPUT.PUT_LINE('removido do departamento: ' || departamento_.nome);
+                DBMS_OUTPUT.PUT_LINE('    removido do departamento: ' || departamento_.nome);
             END IF;
 
             SELECT COUNT(*) INTO efetivo_ FROM Tb_FuncionarioEfetivo f WHERE f.cpf = funcionario_.cpf;
             IF efetivo_ <> 0 THEN
-                DBMS_OUTPUT.PUT_LINE('funcionario do tipo efetivo');
+                DBMS_OUTPUT.PUT_LINE('    funcionario efetivo');
                 INSERT INTO TABLE (SELECT d.pertence FROM Tb_Departamento d WHERE d.cod = SELF.cod)
                 VALUES ((SELECT ref(f) FROM Tb_FuncionarioEfetivo f WHERE f.cpf = funcionario_.cpf));
 
             ELSE
-                DBMS_OUTPUT.PUT_LINE('funcionario do tipo terceirizado');
+                DBMS_OUTPUT.PUT_LINE('    funcionario terceirizado');
                 INSERT INTO TABLE (SELECT d.pertence FROM Tb_Departamento d WHERE d.cod = SELF.cod)
                 VALUES ((SELECT ref(f) FROM Tb_FuncionarioTerceirizado f WHERE f.cpf = funcionario_.cpf));
             END IF;
 
-            DBMS_OUTPUT.PUT_LINE('adicionado ao departamento: ' || nome);
+            DBMS_OUTPUT.PUT_LINE('    adicionado ao departamento: ' || SELF.nome);
         END;
 
 END;
