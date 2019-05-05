@@ -68,16 +68,17 @@ INSERT INTO Tb_Departamento VALUES (
         )
 );
 
-INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 0', 0.50, 1000, 200));
-INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 1', 1.50, 1001, 201));
-INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 2', 2.50, 1002, 202));
-INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 3', 3.50, 1003, 203));
-INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 4', 4.50, 1004, 204));
-INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 5', 5.50, 1005, 205));
-INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 6', 6.50, 1006, 206));
-INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 7', 7.50, 1007, 207));
-INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 8', 8.50, 1008, 208));
-INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 9', 9.50, 1009, 209));
+INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 0',  0.50, 1000, 200));
+INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 1',  1.50, 1001, 201));
+INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 2',  2.50, 1002, 202));
+INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 3',  3.50, 1003, 203));
+INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 4',  4.50, 1004, 204));
+INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 5',  5.50, 1005, 205));
+INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 6',  6.50, 1006, 206));
+INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 7',  7.50, 1007, 207));
+INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 8',  8.50, 1008, 208));
+INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 9',  9.50, 1009, 209));
+INSERT INTO Tb_Produto VALUES (Tp_Produto(Sq_Produto.NEXTVAL, 'Produto 10',10.50, 1010, 210));
 
 INSERT INTO Tb_Sessao VALUES (
         Tp_Sessao(
