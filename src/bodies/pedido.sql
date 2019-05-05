@@ -1,21 +1,19 @@
 ALTER TYPE TP_PEDIDO
-    ADD STATIC FUNCTION cadastraRetorna RETURN Tp_Pedido,
+    ADD STATIC FUNCTION cadastra RETURN Tp_Pedido,
     ADD MEMBER FUNCTION valorTotal RETURN NUMBER
     CASCADE;
 /
 
 CREATE OR REPLACE TYPE BODY Tp_Pedido AS
 
-
-    -- Cadastra um novo pedido vazio e o retorna
-    STATIC FUNCTION cadastraRetorna RETURN Tp_Pedido IS
-        cod_ NUMBER := Sq_Pedido.nextval;
+    -- Cadastra novo pedido vazio
+    STATIC FUNCTION cadastra RETURN Tp_Pedido IS
+        cod_ NUMBER := seq.nextval;
         pedido_ Tp_Pedido := NULL;
         BEGIN
             pedido_ := Tp_Pedido(cod_, SYSDATE);
             INSERT INTO Tb_Pedido VALUES (pedido_);
-            DBMS_OUTPUT.PUT_LINE('pedido criado');
-            DBMS_OUTPUT.PUT_LINE('    cod: ' || cod_);
+            DBMS_OUTPUT.PUT_LINE('pedido => cod: ' || pedido_.cod);
             RETURN pedido_;
         END;
 

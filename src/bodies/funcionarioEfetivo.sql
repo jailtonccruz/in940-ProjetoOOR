@@ -1,5 +1,5 @@
 ALTER TYPE Tp_FuncionarioEfetivo
-    ADD STATIC PROCEDURE cadastra (cpf_ NUMBER, nome_ VARCHAR2, telefone_ NUMBER, endereco_ Tp_Endereco, salario_ NUMBER),
+    ADD STATIC FUNCTION cadastra (cpf_ NUMBER, nome_ VARCHAR2, telefone_ Tp_Telefone, endereco_ Tp_Endereco, salario_ NUMBER) RETURN Tp_FuncionarioEfetivo,
     ADD MEMBER PROCEDURE movimentaProduto (produto_ Tp_Produto, tipo_ CHAR, quantidade_ NUMBER),
     ADD MEMBER PROCEDURE movimentaProduto (produto_ Tp_Produto, tipo_ CHAR, quantidade_ NUMBER, data_ DATE)
     CASCADE;
@@ -9,13 +9,13 @@ CREATE OR REPLACE TYPE BODY Tp_FuncionarioEfetivo AS
 
 
     -- Cadastra um novo funcionario
-    STATIC PROCEDURE cadastra (cpf_ NUMBER, nome_ VARCHAR2, telefone_ NUMBER, endereco_ Tp_Endereco, salario_ NUMBER) IS
+    STATIC FUNCTION cadastra (cpf_ NUMBER, nome_ VARCHAR2, telefone_ Tp_Telefone, endereco_ Tp_Endereco, salario_ NUMBER) RETURN Tp_FuncionarioEfetivo IS
+        funcionario_ Tp_FuncionarioEfetivo := Tp_FuncionarioEfetivo(cpf_, nome_, telefone_, endereco_, Tp_Rel_Emite(),
+                                                                    salario_);
         BEGIN
-            INSERT INTO Tb_FuncionarioEfetivo
-            VALUES (Tp_FuncionarioEfetivo(cpf_, nome_, Ar_Fone(telefone_), endereco_, Tp_Rel_Emite(), salario_));
-            DBMS_OUTPUT.PUT_LINE('funcionario efetivo criado');
-            DBMS_OUTPUT.PUT_LINE('    cpf: ' || cpf_);
-            DBMS_OUTPUT.PUT_LINE('    nome: ' || nome_);
+            INSERT INTO Tb_FuncionarioEfetivo VALUES (funcionario_);
+            DBMS_OUTPUT.PUT_LINE('funcionario efetivo => cpf: ' || funcionario_.cpf || ', nome: ' || funcionario_.nome);
+            RETURN funcionario_;
         END;
 
 
@@ -27,9 +27,9 @@ CREATE OR REPLACE TYPE BODY Tp_FuncionarioEfetivo AS
         END;
 
 
-    -- Movimenta o produto recebido, indicando se a moviemntação é de entrada 'E' ou saída 'S', e a quantidade e data
+    -- Movimenta o produto recebido, indicando se a moviemntação é de entrada 'E' ou saída 'S', quantidade e a data
     MEMBER PROCEDURE movimentaProduto (produto_ Tp_Produto, tipo_ CHAR, quantidade_ NUMBER, data_ DATE) IS
-        estoqueFinal NUMBER := NULL;
+        estoqueResultante_ NUMBER := NULL;
         BEGIN
             IF tipo_ = 'S' AND produto_.estoque < quantidade_ THEN
                 DBMS_OUTPUT.PUT_LINE('movimentação ilegal de saida : estoque < quantidade');
@@ -44,15 +44,15 @@ CREATE OR REPLACE TYPE BODY Tp_FuncionarioEfetivo AS
                     ));
 
                 IF tipo_ = 'S' THEN
-                    estoqueFinal := produto_.estoque - quantidade_;
+                    estoqueResultante_ := produto_.estoque - quantidade_;
                 ELSE
-                    estoqueFinal := produto_.estoque + quantidade_;
+                    estoqueResultante_ := produto_.estoque + quantidade_;
                 END IF;
 
-                UPDATE Tb_Produto p SET p.estoque = estoqueFinal WHERE p.cod = produto_.cod;
+                UPDATE Tb_Produto p SET p.estoque = estoqueResultante_ WHERE p.cod = produto_.cod;
                 DBMS_OUTPUT.PUT_LINE('produto: ' || produto_.nome);
                 DBMS_OUTPUT.PUT_LINE('  estoque anterior: ' || produto_.estoque);
-                DBMS_OUTPUT.PUT_LINE('  estoque atual: ' || estoqueFinal);
+                DBMS_OUTPUT.PUT_LINE('  estoque atual: ' || estoqueResultante_);
 
             END IF;
         END;

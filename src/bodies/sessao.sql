@@ -1,21 +1,18 @@
 ALTER TYPE Tp_Sessao
-    ADD STATIC PROCEDURE cadastra (nome_ VARCHAR2),
+    ADD STATIC FUNCTION cadastra (nome_ VARCHAR2) RETURN Tp_Sessao,
     ADD MEMBER PROCEDURE registraProduto (produto_ Tp_Produto)
     CASCADE;
 /
 
 CREATE OR REPLACE TYPE BODY Tp_Sessao AS
 
-
-    -- Cadastra uma nova sessão
-    STATIC PROCEDURE cadastra (nome_ VARCHAR2) IS
-        cod_ NUMBER := Sq_Sessao.nextval;
+    -- Cadastra nova sessão
+    STATIC FUNCTION cadastra (nome_ VARCHAR2) RETURN Tp_Sessao IS
+        sessao_ Tp_Sessao := Tp_Sessao(seq.nextval, nome_, Tp_Rel_Contem());
         BEGIN
-            INSERT INTO Tb_Sessao
-            VALUES (Tp_Sessao(cod_, nome_, Tp_Rel_Contem()));
-            DBMS_OUTPUT.PUT_LINE('sessao criada');
-            DBMS_OUTPUT.PUT_LINE('    cod: ' || cod_);
-            DBMS_OUTPUT.PUT_LINE('    nome: ' || nome_);
+            INSERT INTO Tb_Sessao VALUES (sessao_);
+            DBMS_OUTPUT.PUT_LINE('sessao => cod: ' || sessao_.cod || ', nome: ' || sessao_.nome);
+            RETURN sessao_;
         END;
 
 
