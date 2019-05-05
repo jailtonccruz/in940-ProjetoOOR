@@ -6,17 +6,54 @@ ALTER TYPE Tp_Funcionario
 CREATE OR REPLACE TYPE BODY Tp_Funcionario AS
 
     -- Realiza um venda de produtos criando o pedido, relacionando-o com os produtos, ao funcionado e ao cliente
-    -- TODO adicionar promocoes, checar estoque
+    -- TODO adicionar promocoes
     MEMBER PROCEDURE vende (cliente_ Tp_Cliente, produtos_ Ar_Produto, quantidade_ Ar_Number) IS
         pedido_ Tp_Pedido := NULL;
         pedidoRef_ REF Tp_Pedido := NULL;
         efetivo_ NUMBER := 0;
+        produtoAtual_ Tp_Produto := NULL;
+        produtoRef_ REF Tp_Produto := NULL;
         BEGIN
+            SAVEPOINT antesDePedido;
             pedido_ := Tp_Pedido.cadastra();
             SELECT REF(p) INTO pedidoRef_ FROM Tb_Pedido p WHERE p.cod = pedido_.cod;
 
+            IF produtos_.COUNT = 0 THEN
+                DBMS_OUTPUT.PUT_LINE('Nenhum produto recebido');
+                DBMS_OUTPUT.PUT_LINE('DESFAZENDO TRANSAÇÃO');
+                ROLLBACK TO antesDePedido;
+                RETURN;
+            END IF;
+
+            IF produtos_.COUNT <> quantidade_.COUNT THEN
+                DBMS_OUTPUT.PUT_LINE('Produtos e quantidades de tamanhos diferentes');
+                DBMS_OUTPUT.PUT_LINE('DESFAZENDO TRANSAÇÃO');
+                ROLLBACK TO antesDePedido;
+                RETURN;
+            END IF;
+
             FOR i IN 1..produtos_.COUNT
                 LOOP
+                    SELECT VALUE(p),
+                           REF(p)
+                           INTO produtoAtual_, produtoRef_ FROM
+                           Tb_Produto p WHERE
+                           p.cod = produtos_(i).cod;
+
+                    IF quantidade_(i) <= 0 THEN
+                        DBMS_OUTPUT.PUT_LINE('quantidade illegal');
+                        DBMS_OUTPUT.PUT_LINE('DESFAZENDO TRANSAÇÃO');
+                        ROLLBACK TO antesDePedido;
+                        RETURN;
+                    END IF;
+
+                    IF produtoAtual_.estoque < quantidade_(i) THEN
+                        DBMS_OUTPUT.PUT_LINE('estoque insuficiente de: ' || produtoAtual_.nome);
+                        DBMS_OUTPUT.PUT_LINE('DESFAZENDO TRANSAÇÃO');
+                        ROLLBACK TO antesDePedido;
+                        RETURN;
+                    END IF;
+
                     INSERT INTO Tb_Rel_Inclui
                     VALUES (Tp_Rel_Inclui(
                             pedidoRef_,
@@ -24,6 +61,11 @@ CREATE OR REPLACE TYPE BODY Tp_Funcionario AS
                             quantidade_(i),
                             produtos_(i).valor
                         ));
+
+                    UPDATE Tb_Produto p
+                    SET p.estoque = (produtoAtual_.estoque - quantidade_(i))
+                    WHERE p.cod = produtos_(i).cod;
+
                     DBMS_OUTPUT.PUT_LINE('produto add: ' || produtos_(i).nome || ', qtd: ' || quantidade_(i));
                 END LOOP;
 
