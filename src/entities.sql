@@ -23,6 +23,7 @@ CREATE OR REPLACE TYPE Tp_Telefone AS OBJECT
     ddd NUMBER(2),
     num NUMBER(9)
 );
+/
 
 CREATE OR REPLACE TYPE Tp_Endereco AS OBJECT
 (
