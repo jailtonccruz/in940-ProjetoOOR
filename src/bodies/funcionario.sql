@@ -5,8 +5,8 @@ ALTER TYPE Tp_Funcionario
 
 CREATE OR REPLACE TYPE BODY Tp_Funcionario AS
 
-
     -- Realiza um venda de produtos criando o pedido, relacionando-o com os produtos, ao funcionado e ao cliente
+    -- TODO adicionar promocoes, checar estoque
     MEMBER PROCEDURE vende (cliente_ Tp_Cliente, produtos_ Ar_Produto, quantidade_ Ar_Number) IS
         pedido_ Tp_Pedido := NULL;
         pedidoRef_ REF Tp_Pedido := NULL;

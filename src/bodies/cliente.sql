@@ -17,7 +17,7 @@ CREATE OR REPLACE TYPE BODY Tp_Cliente AS
 
 
     -- Calcula o valor gasto pelo cliente no intervalo de datas
-    -- TODO
+    -- TODO refazer
     MEMBER FUNCTION valorGasto (de_ DATE, ate_ DATE) RETURN NUMBER IS
         valorGasto NUMBER := 0;
         BEGIN
