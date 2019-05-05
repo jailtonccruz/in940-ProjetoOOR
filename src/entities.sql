@@ -110,17 +110,29 @@ CREATE OR REPLACE TYPE Tp_Sessao AS OBJECT
 ---- VARRAY ARGS FOR FUNCTIONS AND PROCEDURES ----
 
 CREATE TYPE Ar_Number IS VARRAY (9999) OF NUMBER;
+/
 CREATE TYPE Ar_Departamento IS VARRAY (9999) OF Tp_Departamento;
+/
 CREATE TYPE Ar_EmpresaTerceirizada IS VARRAY (9999) OF Tp_EmpresaTerceirizada;
+/
 CREATE TYPE Ar_Pessoa IS VARRAY (9999) OF Tp_Pessoa;
+/
 CREATE TYPE Ar_Funcionario IS VARRAY (9999) OF Tp_Funcionario;
+/
 CREATE TYPE Ar_Cliente IS VARRAY (9999) OF Tp_Cliente;
+/
 CREATE TYPE Ar_FuncionarioEfetivo IS VARRAY (9999) OF Tp_FuncionarioEfetivo;
+/
 CREATE TYPE Ar_FuncionarioTerceirizado IS VARRAY (9999) OF Tp_FuncionarioTerceirizado;
+/
 CREATE TYPE Ar_Pedido IS VARRAY (9999) OF Tp_Pedido;
+/
 CREATE TYPE Ar_Produto IS VARRAY (9999) OF Tp_Produto;
+/
 CREATE TYPE Ar_Promocao IS VARRAY (9999) OF Tp_Promocao;
+/
 CREATE TYPE Ar_Sessao IS VARRAY (9999) OF Tp_Sessao;
+/
 
 
 ---- DROPS ----
