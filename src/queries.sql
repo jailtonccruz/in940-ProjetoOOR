@@ -7,3 +7,6 @@ SELECT pro.cod, pro.nome
    FROM tb_rel_inclui r)
 
 -- SUBCONSULTA COM ANY 
+
+SELECT cpf.func, nome.func salario FROM tb_funcionarioefetivo func 
+WHERE salario > ALL (SELECT salario FROM tb_funcionarioefetivo WHERE departamento.func = '1');
