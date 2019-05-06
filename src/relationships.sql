@@ -68,10 +68,11 @@ ALTER TYPE Tp_Sessao ADD ATTRIBUTE (contem Tp_Rel_Contem) CASCADE;
 -- Inclui => Pedido N - N Produto
 CREATE OR REPLACE TYPE Tp_Rel_Inclui AS OBJECT
 (
-    pedido     REF Tp_Pedido,
-    produto    Ref Tp_Produto,
-    quantidade NUMBER,
-    valor      NUMBER
+    pedido        REF Tp_Pedido,
+    produto       Ref Tp_Produto,
+    quantidade    NUMBER,
+    valor         NUMBER,
+    valorPromocao NUMBER
 );
 /
 

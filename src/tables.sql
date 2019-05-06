@@ -68,7 +68,8 @@ ALTER TABLE Tb_Sessao
 
 CREATE TABLE Tb_Rel_Inclui OF Tp_Rel_Inclui;
 ALTER TABLE Tb_Rel_Inclui
-    ADD CHECK (pedido IS NOT NULL AND produto IS NOT NULL AND quantidade IS NOT NULL AND valor IS NOT NULL);
+    ADD CHECK (pedido IS NOT NULL AND produto IS NOT NULL AND quantidade IS NOT NULL AND valor IS NOT NULL AND
+               valorPromocao IS NOT NULL);
 
 
 CREATE TABLE Tb_Rel_Movimenta OF Tp_Rel_Movimenta;
