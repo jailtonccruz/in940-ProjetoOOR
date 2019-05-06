@@ -46,3 +46,7 @@ FROM funcOrdenadosPedidos;
 -- DROP VIEW funcOrdenadosPedidos;
 --
 
+-- Consulta com group by e having
+select ri.pedido.data as data, sum(ri.produto.valor) as valorTotal, ri.produto.nome from tb_rel_inclui ri
+GROUP BY ri.pedido.data, ri.produto.nome
+having ri.produto.nome = 'Pringles';
