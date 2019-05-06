@@ -1,5 +1,6 @@
 ALTER TYPE Tp_Funcionario
-    ADD MEMBER PROCEDURE vende (cliente_ Tp_Cliente, produtos_ Ar_Produto, quantidade_ Ar_Number)
+    ADD MEMBER PROCEDURE vende (cliente_ Tp_Cliente, produtos_ Ar_Produto, quantidade_ Ar_Number),
+    ADD MEMBER FUNCTION vendasFeitas return number
     CASCADE;
 /
 
@@ -65,7 +66,6 @@ CREATE OR REPLACE TYPE BODY Tp_Funcionario AS
                       AND p.quantidade <= quantidade_(i)
                       AND pedido_.data BETWEEN p.de AND p.ate;
 
-
                     IF temPromocao_ <> 0 THEN
                         DBMS_OUTPUT.PUT_LINE('produto ' || produtoAtual_.nome ||
                                              ' atigiu condições nescessárias para participar da promocao');
@@ -79,7 +79,6 @@ CREATE OR REPLACE TYPE BODY Tp_Funcionario AS
                     ELSE
                         valorPromocao_ := produtoAtual_.valor;
                     END IF;
-
 
                     INSERT INTO Tb_Rel_Inclui
                     VALUES (Tp_Rel_Inclui(
@@ -114,6 +113,19 @@ CREATE OR REPLACE TYPE BODY Tp_Funcionario AS
             END IF;
 
             DBMS_OUTPUT.PUT_LINE('pedido => funcionario: ' || SELF.nome);
+        END;
+
+    MEMBER FUNCTION vendasFeitas return NUMBER IS
+        efetivo_ NUMBER := 0;
+        contagem NUMBER := 0;
+        BEGIN
+            SELECT COUNT(*) INTO efetivo_ FROM Tb_FuncionarioEfetivo f WHERE f.cpf = SELF.cpf;
+            IF efetivo_ <> 0 THEN
+                SELECT COUNT (*) INTO contagem FROM TABLE(select f.emite from Tb_FuncionarioEfetivo f where f.cpf = SELF.cpf);
+            ELSE
+                SELECT COUNT (*) INTO contagem FROM TABLE(select f.emite from Tb_FuncionarioTerceirizado f where f.cpf = SELF.cpf);
+            END IF;
+            RETURN contagem;
         END;
 
 END;
