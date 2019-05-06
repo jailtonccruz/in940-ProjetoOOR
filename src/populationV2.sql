@@ -133,22 +133,22 @@ BEGIN
     funcionariosEfetivos(4).movimentaProduto(produtos(10), 'E', 1000, TO_DATE('01/10/2018', 'dd/mm/yyyy'));
     funcionariosEfetivos(4).movimentaProduto(produtos(10), 'S', 500, TO_DATE('01/10/2018', 'dd/mm/yyyy'));
 
-    funcionarios(1).vende(clientes(1), Ar_Produto(produtos(1)), Ar_Number(1));
-    funcionarios(3).vende(clientes(2), Ar_Produto(produtos(2), produtos(7)), Ar_Number(1, 2));
-    funcionarios(5).vende(clientes(3), Ar_Produto(produtos(3), produtos(8), produtos(9)), Ar_Number(1, 2, 3));
-    funcionarios(7).vende(clientes(4), Ar_Produto(produtos(4), produtos(9)), Ar_Number(1, 2));
-    funcionarios(1).vende(clientes(5), Ar_Produto(produtos(5)), Ar_Number(1));
-    funcionarios(3).vende(clientes(6), Ar_Produto(produtos(6), produtos(10)), Ar_Number(1, 2));
-    funcionarios(5).vende(clientes(7), Ar_Produto(produtos(7), produtos(1), produtos(10)), Ar_Number(1, 2, 3));
-    funcionarios(7).vende(clientes(8), Ar_Produto(produtos(8), produtos(2)), Ar_Number(1, 2));
-    funcionarios(1).vende(clientes(9), Ar_Produto(produtos(9)), Ar_Number(1));
-    funcionarios(3).vende(clientes(10), Ar_Produto(produtos(10), produtos(3)), Ar_Number(1, 2));
-    funcionarios(5).vende(clientes(1), Ar_Produto(produtos(1), produtos(4), produtos(2)), Ar_Number(1, 2, 3));
-    funcionarios(7).vende(clientes(2), Ar_Produto(produtos(2), produtos(5)), Ar_Number(1, 2));
-    funcionarios(1).vende(clientes(3), Ar_Produto(produtos(3)), Ar_Number(1));
-    funcionarios(3).vende(clientes(4), Ar_Produto(produtos(4), produtos(6)), Ar_Number(1, 2));
-    funcionarios(5).vende(clientes(5), Ar_Produto(produtos(5), produtos(7), produtos(3)), Ar_Number(1, 2, 3));
-    funcionarios(7).vende(clientes(6), Ar_Produto(produtos(6), produtos(8)), Ar_Number(1, 2));
+    funcionarios(1).vende(clientes(1), Ar_Produto(produtos(1)), Ar_Number(5));
+    funcionarios(3).vende(clientes(2), Ar_Produto(produtos(2), produtos(7)), Ar_Number(5, 10));
+    funcionarios(5).vende(clientes(3), Ar_Produto(produtos(3), produtos(8), produtos(9)), Ar_Number(5, 10, 15));
+    funcionarios(7).vende(clientes(4), Ar_Produto(produtos(4), produtos(9)), Ar_Number(5, 10));
+    funcionarios(1).vende(clientes(5), Ar_Produto(produtos(5)), Ar_Number(5));
+    funcionarios(3).vende(clientes(6), Ar_Produto(produtos(6), produtos(10)), Ar_Number(5, 10));
+    funcionarios(5).vende(clientes(7), Ar_Produto(produtos(7), produtos(1), produtos(10)), Ar_Number(5, 10, 15));
+    funcionarios(7).vende(clientes(8), Ar_Produto(produtos(8), produtos(2)), Ar_Number(5, 10));
+    funcionarios(1).vende(clientes(9), Ar_Produto(produtos(9)), Ar_Number(5));
+    funcionarios(3).vende(clientes(10), Ar_Produto(produtos(10), produtos(3)), Ar_Number(5, 10));
+    funcionarios(5).vende(clientes(1), Ar_Produto(produtos(1), produtos(4), produtos(2)), Ar_Number(5, 10, 15));
+    funcionarios(7).vende(clientes(2), Ar_Produto(produtos(2), produtos(5)), Ar_Number(5, 10));
+    funcionarios(1).vende(clientes(3), Ar_Produto(produtos(3)), Ar_Number(5));
+    funcionarios(3).vende(clientes(4), Ar_Produto(produtos(4), produtos(6)), Ar_Number(5, 10));
+    funcionarios(5).vende(clientes(5), Ar_Produto(produtos(5), produtos(7), produtos(3)), Ar_Number(5, 10, 15));
+    funcionarios(7).vende(clientes(6), Ar_Produto(produtos(6), produtos(8)), Ar_Number(5, 10));
 
 END;
 /

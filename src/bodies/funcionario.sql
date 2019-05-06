@@ -16,6 +16,7 @@ CREATE OR REPLACE TYPE BODY Tp_Funcionario AS
         temPromocao_ NUMBER := 0;
         promocao_ Tp_Promocao := NULL;
         promocaoRef_ REF Tp_Promocao := NULL;
+        valorPromocao_ NUMBER := 0;
         BEGIN
             SAVEPOINT antesDePedido;
             pedido_ := Tp_Pedido.cadastra();
@@ -58,26 +59,26 @@ CREATE OR REPLACE TYPE BODY Tp_Funcionario AS
                     END IF;
 
                     -- promoção
-                    SELECT COUNT(*) INTO temPromocao_ FROM Tb_Promocao p
+                    SELECT COUNT(*) INTO temPromocao_
+                    FROM Tb_Promocao p
                     WHERE p.produto.cod = produtos_(i).cod
-                        AND p.quantidade <= quantidade_(i)
-                        AND pedido_.data BETWEEN p.de AND p.ate;
+                      AND p.quantidade <= quantidade_(i)
+                      AND pedido_.data BETWEEN p.de AND p.ate;
 
 
-                    DBMS_OUTPUT.PUT_LINE('teste ' || temPromocao_);
---                     SELECT VALUE(p),
---                            REF(p)
---                            INTO promocao_, promocaoRef_
---                     FROM Tb_Promocao p
---                     WHERE p.produto.cod = produtos_(i).cod
---                       AND p.quantidade <= quantidade_(i)
---                       AND pedido_.data BETWEEN p.de AND p.ate;
+                    IF temPromocao_ <> 0 THEN
+                        DBMS_OUTPUT.PUT_LINE('produto ' || produtoAtual_.nome ||
+                                             ' atigiu condições nescessárias para participar da promocao');
+                        SELECT VALUE(p), REF(p) INTO promocao_, promocaoRef_
+                        FROM Tb_Promocao p
+                        WHERE p.produto.cod = produtos_(i).cod
+                          AND p.quantidade <= quantidade_(i)
+                          AND pedido_.data BETWEEN p.de AND p.ate;
 
---                     IF promocao_ IS NOT NULL THEN
---                         DBMS_OUTPUT.PUT_LINE('promocao not null: ' || promocao_.COD);
---                     ELSE
---                         DBMS_OUTPUT.PUT_LINE('promocao null: ');
---                     END IF;
+                        valorPromocao_ := produtoAtual_.valor * promocao_.desconto;
+                    ELSE
+                        valorPromocao_ := produtoAtual_.valor;
+                    END IF;
 
 
                     INSERT INTO Tb_Rel_Inclui
@@ -85,8 +86,8 @@ CREATE OR REPLACE TYPE BODY Tp_Funcionario AS
                             pedidoRef_,
                             (SELECT REF(p) FROM Tb_Produto p WHERE p.cod = produtos_(i).cod),
                             quantidade_(i),
-                            produtos_(i).valor,
-                            produtos_(i).valor
+                            produtoAtual_.valor,
+                            valorPromocao_
                         ));
 
                     UPDATE Tb_Produto p
