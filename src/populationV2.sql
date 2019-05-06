@@ -154,10 +154,12 @@ END;
 /
 
 DECLARE
-      produtos                  Ar_Produto                 := NULL; 
+      produtos    Ar_Produto  := NULL; 
 BEGIN 
-      produtos := Ar_Produto(
-      Tp_Produto.cadastra('Achocolatado Italac'4,5, 0, 50),
+      produtos := Ar_Produto
+      (
+      Tp_Produto.cadastra('Achocolatado Italac',4.5, 0, 50),
       Tp_Produto.cadastra('Agua Sanitaria Limpabem', 2.8, 0, 30),
       Tp_Produto.cadastra('Manteiga Duleite', 12, 0, 100)
-END; 
+      );
+END;  
