@@ -1,4 +1,5 @@
---SUBCONSULTA COM IN (pegando os produtos que NÃO foram vendidos)
+-- 10 
+-- SUBCONSULTA COM IN (pegando os produtos que NÃO foram vendidos)
 
 SELECT pro.cod, pro.nome
   FROM tb_produto pro
@@ -6,6 +7,14 @@ SELECT pro.cod, pro.nome
 (select DEREF(r.produto).cod
    FROM tb_rel_inclui r)
 
+-- 11
+-- Fazer uma consulta que mostre todos os Produtos com nome ITALAC
+--
+SELECT *
+  FROM TB_PRODUTO pro
+ WHERE upper(pro.nome) like '%ITALAC%' 
+
+-- 20 
 -- SUBCONSULTA COM ANY 
 
 SELECT cpf.func, nome.func, salario FROM tb_funcionarioefetivo func 
