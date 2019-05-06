@@ -8,5 +8,8 @@ SELECT pro.cod, pro.nome
 
 -- SUBCONSULTA COM ANY 
 
-SELECT cpf.func, nome.func salario FROM tb_funcionarioefetivo func 
+SELECT cpf.func, nome.func, salario FROM tb_funcionarioefetivo func 
 WHERE salario > ALL (SELECT salario FROM tb_funcionarioefetivo WHERE departamento.func = '1');
+
+-- ORDEY BY 
+SELECT cpf.func, nome.func, salario FROM tb_funcionarioefetivo func ORDER BY (salario) DESC;
