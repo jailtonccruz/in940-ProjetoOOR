@@ -7,7 +7,7 @@ SELECT pro.cod, pro.nome
 (select DEREF(r.produto).cod
    FROM tb_rel_inclui r)
 
--- 11
+-- 11 (uso do IN) e 43 (uso do DEREF)
 -- Fazer uma consulta que mostre todos os Produtos com nome ITALAC
 --
 SELECT *
