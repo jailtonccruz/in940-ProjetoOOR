@@ -27,13 +27,13 @@ CREATE OR REPLACE TYPE BODY Tp_Pedido AS
             RETURN total;
         END;
 
-        -- Calcula valor do pedido com promoções.
-        -- TODO implementar aplicações de promocoes
-        MEMBER FUNCTION valorPromocao RETURN NUMBER IS
+    -- Calcula valor do pedido com promoções.
+    MEMBER FUNCTION valorPromocao RETURN NUMBER IS
         total NUMBER := 0;
         BEGIN
-            SELECT SUM(ri.quantidade * ri.valor * (select promo.retornaDescontoDeProduto(ri.produto.cod) from tb_promocao promo)) INTO total FROM Tb_Rel_Inclui ri 
-                WHERE ri.pedido.cod = SELF.cod;
+            SELECT SUM(ri.quantidade * ri.valorPromocao) INTO total
+            FROM Tb_Rel_Inclui ri
+            WHERE ri.pedido.cod = SELF.cod;
             RETURN total;
         END;
 END;

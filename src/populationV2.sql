@@ -7,6 +7,7 @@ DECLARE
     funcionarios              Ar_Funcionario             := NULL;
     produtos                  Ar_Produto                 := NULL;
     sessoes                   Ar_Sessao                  := NULL;
+    promocoes                 Ar_Promocao                := NULL;
 BEGIN
     departamentos := Ar_Departamento(
             Tp_Departamento.cadastra('Vendas', 'V'),
@@ -91,6 +92,11 @@ BEGIN
     sessoes := Ar_Sessao(
             Tp_Sessao.cadastra('Salgadinhos'),
             Tp_Sessao.cadastra('Biscoitos')
+        );
+
+    promocoes := Ar_Promocao(
+            Tp_Promocao.cadastra(3, 0.9, TO_DATE('01/01/2018', 'dd/mm/yyyy'), TO_DATE('01/01/2020'), produtos(1)),
+            Tp_Promocao.cadastra(3, 0.75, TO_DATE('01/01/2018', 'dd/mm/yyyy'), TO_DATE('01/01/2020'), produtos(6))
         );
 
     sessoes(1).registraProduto(produtos(1));
