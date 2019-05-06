@@ -95,8 +95,10 @@ BEGIN
         );
 
     promocoes := Ar_Promocao(
-            Tp_Promocao.cadastra(3, 0.9, TO_DATE('01/01/2018', 'dd/mm/yyyy'), TO_DATE('01/01/2020'), produtos(1)),
-            Tp_Promocao.cadastra(3, 0.75, TO_DATE('01/01/2018', 'dd/mm/yyyy'), TO_DATE('01/01/2020'), produtos(6))
+            Tp_Promocao.cadastra(3, 0.9, TO_DATE('01/01/2018', 'dd/mm/yyyy'), TO_DATE('01/01/2020', 'dd/mm/yyyy'),
+                                 produtos(1)),
+            Tp_Promocao.cadastra(3, 0.75, TO_DATE('01/01/2018', 'dd/mm/yyyy'), TO_DATE('01/01/2020', 'dd/mm/yyyy'),
+                                 produtos(6))
         );
 
     sessoes(1).registraProduto(produtos(1));
