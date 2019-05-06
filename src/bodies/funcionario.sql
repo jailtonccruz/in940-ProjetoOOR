@@ -1,6 +1,6 @@
 ALTER TYPE Tp_Funcionario
     ADD MEMBER PROCEDURE vende (cliente_ Tp_Cliente, produtos_ Ar_Produto, quantidade_ Ar_Number),
-    Add Member function vendasFeitas return number
+    ADD MEMBER FUNCTION vendasFeitas return number
     CASCADE;
 /
 
@@ -61,12 +61,12 @@ CREATE OR REPLACE TYPE BODY Tp_Funcionario AS
                     -- promoção
                     SELECT COUNT(*) INTO temPromocao_ FROM Tb_Promocao p
                     WHERE p.produto.cod = produtos_(i).cod
-                        AND p.quantidade <= quantidade_(i)
-                        AND pedido_.data BETWEEN p.de AND p.ate;
+                      AND p.quantidade <= quantidade_(i)
+                      AND pedido_.data BETWEEN p.de AND p.ate;
 
 
                     DBMS_OUTPUT.PUT_LINE('teste ' || temPromocao_);
---                     SELECT VALUE(p),
+                    --                     SELECT VALUE(p),
 --                            REF(p)
 --                            INTO promocao_, promocaoRef_
 --                     FROM Tb_Promocao p
@@ -117,17 +117,17 @@ CREATE OR REPLACE TYPE BODY Tp_Funcionario AS
         END;
 
     MEMBER FUNCTION vendasFeitas return NUMBER IS
-    efetivo_ NUMBER := 0;
-    contagem NUMBER := 0;
-    BEGIN
-    SELECT COUNT(*) INTO efetivo_ FROM Tb_FuncionarioEfetivo f WHERE f.cpf = SELF.cpf;
+        efetivo_ NUMBER := 0;
+        contagem NUMBER := 0;
+        BEGIN
+            SELECT COUNT(*) INTO efetivo_ FROM Tb_FuncionarioEfetivo f WHERE f.cpf = SELF.cpf;
             IF efetivo_ <> 0 THEN
-     SELECT COUNT (*) INTO contagem FROM TABLE(select f.emite from Tb_FuncionarioEfetivo f where f.cpf = SELF.cpf);
-     ELSE
-     SELECT COUNT (*) INTO contagem FROM TABLE(select f.emite from Tb_FuncionarioTerceirizado f where f.cpf = SELF.cpf);
-    END IF;
-    RETURN contagem;
-    END;
+                SELECT COUNT (*) INTO contagem FROM TABLE(select f.emite from Tb_FuncionarioEfetivo f where f.cpf = SELF.cpf);
+            ELSE
+                SELECT COUNT (*) INTO contagem FROM TABLE(select f.emite from Tb_FuncionarioTerceirizado f where f.cpf = SELF.cpf);
+            END IF;
+            RETURN contagem;
+        END;
 
 END;
 /
