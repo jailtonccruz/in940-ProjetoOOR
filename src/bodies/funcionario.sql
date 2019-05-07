@@ -1,6 +1,6 @@
 ALTER TYPE Tp_Funcionario
     ADD MEMBER PROCEDURE vende (cliente_ Tp_Cliente, produtos_ Ar_Produto, quantidade_ Ar_Number),
-    ADD MEMBER FUNCTION vendasFeitas return number
+    ADD MEMBER FUNCTION vendasFeitas RETURN NUMBER
     CASCADE;
 /
 
@@ -121,9 +121,11 @@ CREATE OR REPLACE TYPE BODY Tp_Funcionario AS
         BEGIN
             SELECT COUNT(*) INTO efetivo_ FROM Tb_FuncionarioEfetivo f WHERE f.cpf = SELF.cpf;
             IF efetivo_ <> 0 THEN
-                SELECT COUNT (*) INTO contagem FROM TABLE(select f.emite from Tb_FuncionarioEfetivo f where f.cpf = SELF.cpf);
+                SELECT COUNT(*) INTO contagem
+                FROM TABLE (select f.emite from Tb_FuncionarioEfetivo f where f.cpf = SELF.cpf);
             ELSE
-                SELECT COUNT (*) INTO contagem FROM TABLE(select f.emite from Tb_FuncionarioTerceirizado f where f.cpf = SELF.cpf);
+                SELECT COUNT(*) INTO contagem
+                FROM TABLE (select f.emite from Tb_FuncionarioTerceirizado f where f.cpf = SELF.cpf);
             END IF;
             RETURN contagem;
         END;
