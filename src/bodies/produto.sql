@@ -16,3 +16,12 @@ CREATE OR REPLACE TYPE BODY Tp_Produto AS
 
 END;
 /
+
+-- trigger aviso limiar 
+create or replace trigger observa_limiar AFTER
+update on tb_produto for each row 
+begin 
+    if :New.estoque < :New.limiarPedido
+    then dbms_output.put_line('ESTOQUE ABAIXO DO LIMIAR: ' || :New.nome);
+    END IF;
+END;
