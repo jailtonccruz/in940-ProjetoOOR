@@ -56,10 +56,7 @@ from tb_rel_inclui ri
 GROUP BY ri.pedido.data, ri.produto.nome
 having ri.produto.nome = 'Pringles';
 
--- Testando map e order
+-- Testando map
 SELECT *
 FROM Tb_Cliente c
 ORDER BY c.mapNome();
-SELECT value(p) as p_
-FROM Tb_Produto p
-ORDER BY p_.orderByEstoque(p_);
