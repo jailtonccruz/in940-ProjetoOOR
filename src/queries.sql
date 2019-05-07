@@ -15,15 +15,19 @@ WHERE UPPER(pro.nome) like '%ITALAC%';
 
 -- 20 
 -- SUBCONSULTA COM ALL
+SELECT f.cpf, f.nome, f.salario
+FROM tb_funcionarioefetivo f
+WHERE f.salario > ALL (SELECT fe.salario as salario
+                       FROM TABLE (SELECT d.pertence FROM Tb_Departamento d WHERE d.cod = 1) t
+                                INNER JOIN
+                            TB_FUNCIONARIOEFETIvo fe
+                            ON t.funcionario.cpf = fe.cpf);
 
-SELECT cpf.func, nome.func, salario
-FROM tb_funcionarioefetivo func
-WHERE salario > ALL (SELECT salario FROM tb_funcionarioefetivo WHERE departamento.func = '1');
 
--- ORDEY BY 
-SELECT cpf.func, nome.func, salario
-FROM tb_funcionarioefetivo func
-ORDER BY (salario) DESC;
+-- ORDEY BY
+SELECT f.cpf, f.nome, f.salario
+FROM tb_funcionarioefetivo f
+ORDER BY (f.salario) DESC;
 
 -- SUBCONSULTA COM ANY 
 select c.nome, cf.pedido.cod
@@ -47,6 +51,15 @@ FROM funcOrdenadosPedidos;
 --
 
 -- Consulta com group by e having
-select ri.pedido.data as data, sum(ri.produto.valor) as valorTotal, ri.produto.nome from tb_rel_inclui ri
+select ri.pedido.data as data, sum(ri.produto.valor) as valorTotal, ri.produto.nome
+from tb_rel_inclui ri
 GROUP BY ri.pedido.data, ri.produto.nome
 having ri.produto.nome = 'Pringles';
+
+-- Testando map e order
+SELECT *
+FROM Tb_Cliente c
+ORDER BY c.mapNome();
+SELECT value(p) as p_
+FROM Tb_Produto p
+ORDER BY p_.orderByEstoque(p_);
