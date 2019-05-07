@@ -1,5 +1,6 @@
 ALTER TYPE Tp_FuncionarioEfetivo
     ADD STATIC FUNCTION cadastra (cpf_ NUMBER, nome_ VARCHAR2, telefone_ Tp_Telefone, endereco_ Tp_Endereco, salario_ NUMBER) RETURN Tp_FuncionarioEfetivo,
+    ADD STATIC FUNCTION mediaSalario RETURN NUMBER,
     ADD MEMBER PROCEDURE movimentaProduto (produto_ Tp_Produto, tipo_ CHAR, quantidade_ NUMBER),
     ADD MEMBER PROCEDURE movimentaProduto (produto_ Tp_Produto, tipo_ CHAR, quantidade_ NUMBER, data_ DATE)
     CASCADE;
@@ -17,6 +18,12 @@ CREATE OR REPLACE TYPE BODY Tp_FuncionarioEfetivo AS
             RETURN funcionario_;
         END;
 
+    STATIC FUNCTION mediaSalario RETURN NUMBER IS
+        average_ NUMBER;
+        BEGIN
+            SELECT AVG(fe.salario) into average_ FROM Tb_FuncionarioEfetivo fe;
+            RETURN average_;
+        END;
 
     -- Movimenta o produto recebido, indicando se a moviemntação é de entrada 'E' ou saída 'S', e a quantidade
     -- A data atual é usada na movimentação
